@@ -73,9 +73,9 @@ namespace ShapeFactory.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap flyingdragon_frame1 {
+        internal static System.Drawing.Bitmap belt {
             get {
-                object obj = ResourceManager.GetObject("flyingdragon_frame1", resourceCulture);
+                object obj = ResourceManager.GetObject("belt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace ShapeFactory.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap flyingdragon_frame2 {
+        internal static System.Drawing.Bitmap booster {
             get {
-                object obj = ResourceManager.GetObject("flyingdragon_frame2", resourceCulture);
+                object obj = ResourceManager.GetObject("booster", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace ShapeFactory.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap flyingdragon_frame3 {
+        internal static System.Drawing.Bitmap elevator {
             get {
-                object obj = ResourceManager.GetObject("flyingdragon_frame3", resourceCulture);
+                object obj = ResourceManager.GetObject("elevator", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,39 @@ namespace ShapeFactory.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap flyingdragon_frame4 {
+        internal static System.Drawing.Bitmap pipe {
             get {
-                object obj = ResourceManager.GetObject("flyingdragon_frame4", resourceCulture);
+                object obj = ResourceManager.GetObject("pipe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap punter {
+            get {
+                object obj = ResourceManager.GetObject("punter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spawn_pipe {
+            get {
+                object obj = ResourceManager.GetObject("spawn_pipe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap teleporter {
+            get {
+                object obj = ResourceManager.GetObject("teleporter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

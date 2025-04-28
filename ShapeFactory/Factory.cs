@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -22,6 +23,8 @@ namespace ShapeFactory {
 
             renderer = new Renderer();
             physics = new Physics();
+
+            initFactoryLayout();
         }
 
         private void freeItems() {
@@ -30,6 +33,10 @@ namespace ShapeFactory {
             }
 
             freeQueue.Clear();
+        }
+
+        private void initFactoryLayout() {
+            AddStaticItem(new Belt(renderer, new Vector2(200.0f, 200.0f), 36.0f));
         }
 
         public void AddItem(Item item) {

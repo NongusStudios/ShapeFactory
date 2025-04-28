@@ -121,16 +121,25 @@
   <data name="anomalous" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\anomalous.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="flyingdragon_frame1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\flyingdragon_frame1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="belt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\belt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="flyingdragon_frame2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\flyingdragon_frame2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="booster" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\booster.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="flyingdragon_frame3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\flyingdragon_frame3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="elevator" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\elevator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="flyingdragon_frame4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\flyingdragon_frame4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pipe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pipe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="punter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\punter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spawn_pipe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spawn_pipe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="teleporter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\teleporter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

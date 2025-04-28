@@ -47,9 +47,9 @@ namespace ShapeFactory {
         }
 
         public override void Draw(Graphics g) {
-            var tb = new TextureBrush(Frames[currentFrame]);
-
             if (Type == ShapeType.Rectangle) {
+                /* This was a solution for the uv offset when using the texture brush with a rectangle
+                 * I later decided to just draw the image when using a rectangle so I could resize the rectangle while retaining the entire image
                 tb.WrapMode = WrapMode.Clamp;
 
                 // This accounts for offset when using texture brush
@@ -58,9 +58,19 @@ namespace ShapeFactory {
                 Point xImageCenterRelative = new Point(Frames[currentFrame].Width / 2, Frames[currentFrame].Height / 2); //Find the relative center location of Image
                 Point xOffSetRelative = new Point(xDisplayCenterRelative.X - xImageCenterRelative.X, xDisplayCenterRelative.Y - xImageCenterRelative.Y);
                 Point xAbsolutePixel = xOffSetRelative + new Size(displayArea.Location); //Find the absolute location
-                tb.TranslateTransform(xAbsolutePixel.X, xAbsolutePixel.Y);
+                tb.TranslateTransform(xAbsolutePixel.X, xAbsolutePixel.Y); */
+
+                int x, y, w, h;
+                x = (int)(Transform.Position.X - Transform.Size.X / 2.0);
+                y = (int)(Transform.Position.Y - Transform.Size.Y / 2.0);
+                w = (int)Transform.Size.X;
+                h = (int)Transform.Size.Y;
+                g.DrawImage(Frames[currentFrame], new Rectangle(x, y, w, h), new Rectangle(0, 0, Frames[currentFrame].Width, Frames[currentFrame].Height), GraphicsUnit.Pixel);
+                return;
             }
 
+            // Use texture brush for triangles and circles
+            var tb = new TextureBrush(Frames[currentFrame]);
             FillBrush = tb;
             base.Draw(g);
         }

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace ShapeFactory {
     public class StaticItem {
-        public Shape ShapeInstance { get; set; }
-        // public StaticBody PhysicsInstance;
+        public Shape ShapeInstance;
+        public Staticbody PhysicsInstance;
 
         public StaticItem(Shape sh) {
             ShapeInstance = sh;
+            PhysicsInstance = new Staticbody(ShapeInstance.Type, ShapeInstance.Transform, 0);
         }
 
         public virtual void Update(double deltaTime) { }

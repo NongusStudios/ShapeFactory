@@ -47,11 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Belt.cs" />
     <Compile Include="Drawable.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Physics.cs" />
     <Compile Include="PhysicsBody.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Renderer.cs" />
     <Compile Include="Rigidbody.cs" />
     <Compile Include="Shape.cs" />
@@ -72,14 +78,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,10 +98,14 @@
     <None Include="Resources\anomalous.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\flyingdragon_frame1.png" />
-    <Content Include="Resources\flyingdragon_frame2.png" />
-    <Content Include="Resources\flyingdragon_frame3.png" />
-    <Content Include="Resources\flyingdragon_frame4.png" />
+    <None Include="Resources\belt.bmp" />
+    <Content Include="Resources\belt.png" />
+    <Content Include="Resources\booster.png" />
+    <Content Include="Resources\elevator.png" />
+    <Content Include="Resources\pipe.png" />
+    <Content Include="Resources\punter.png" />
+    <Content Include="Resources\spawn_pipe.png" />
+    <Content Include="Resources\teleporter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,6 +12,7 @@ namespace ShapeFactory {
 
         public Item(Shape sh) {
             ShapeInstance = sh;
+            PhysicsInstance = new Rigidbody(ShapeInstance.Type, ShapeInstance.Transform, 1.0f, 0);
             queueFree = false;
         }
 
