@@ -9,8 +9,7 @@ using System.Xml.Linq;
 
 namespace ShapeFactory {
     public class Factory {
-        private Renderer renderer;
-        private Physics  physics; 
+        
 
         private List<Item> items;
         private List<StaticItem> staticItems;
@@ -20,11 +19,6 @@ namespace ShapeFactory {
             items = new List<Item>();
             staticItems = new List<StaticItem>();
             freeQueue = new List<int>();
-
-            renderer = new Renderer();
-            physics = new Physics();
-
-            initFactoryLayout();
         }
 
         private void freeItems() {
@@ -35,8 +29,10 @@ namespace ShapeFactory {
             freeQueue.Clear();
         }
 
-        private void initFactoryLayout() {
-            AddStaticItem(new Belt(renderer, new Vector2(200.0f, 200.0f), 36.0f));
+        public void Clear() {
+            items.Clear();
+            staticItems.Clear();
+            freeQueue.Clear();
         }
 
         public void AddItem(Item item) {
@@ -63,15 +59,7 @@ namespace ShapeFactory {
 
             freeItems();
 
-            renderer.Update(deltaTime);
-        }
-
-        public void PhysicsUpdate(double deltaTime) {
-            physics.PhysicsStep(deltaTime);
-        }
-
-        public void Draw(Graphics g) {
-            renderer.Draw(g);
+            
         }
     }
 }

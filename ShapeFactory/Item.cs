@@ -10,9 +10,9 @@ namespace ShapeFactory {
         public Rigidbody PhysicsInstance;
         private bool queueFree;
 
-        public Item(Shape sh) {
+        public Item(Shape sh, Physics p) {
             ShapeInstance = sh;
-            PhysicsInstance = new Rigidbody(ShapeInstance.Type, ShapeInstance.Transform, 1.0f, 0);
+            PhysicsInstance = p.AddBody(new Rigidbody(ShapeInstance.Type, ShapeInstance.Transform, 1.0f, 1));
             queueFree = false;
         }
 

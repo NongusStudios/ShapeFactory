@@ -1,5 +1,5 @@
 ﻿namespace ShapeFactory {
-    partial class Form1 {
+    partial class FactorySim {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -30,6 +30,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbSpawnPoint = new System.Windows.Forms.ComboBox();
             this.btnReset = new System.Windows.Forms.Button();
+            this.cbLayout = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnOpenEditor = new System.Windows.Forms.Button();
+            this.btnLoadlayout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,7 +43,7 @@
             this.canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.canvas.Location = new System.Drawing.Point(172, 12);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(800, 600);
+            this.canvas.Size = new System.Drawing.Size(528, 528);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
             this.canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.canvas_Frame);
@@ -89,18 +93,59 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(16, 588);
+            this.btnReset.Location = new System.Drawing.Point(91, 13);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 6;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // cbLayout
+            // 
+            this.cbLayout.FormattingEnabled = true;
+            this.cbLayout.Location = new System.Drawing.Point(12, 145);
+            this.cbLayout.Name = "cbLayout";
+            this.cbLayout.Size = new System.Drawing.Size(121, 21);
+            this.cbLayout.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 129);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Layout";
+            // 
+            // btnOpenEditor
+            // 
+            this.btnOpenEditor.Location = new System.Drawing.Point(8, 518);
+            this.btnOpenEditor.Name = "btnOpenEditor";
+            this.btnOpenEditor.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenEditor.TabIndex = 9;
+            this.btnOpenEditor.Text = "Open Editor";
+            this.btnOpenEditor.UseVisualStyleBackColor = true;
+            this.btnOpenEditor.Click += new System.EventHandler(this.btnOpenEditor_Click);
+            // 
+            // btnLoadlayout
+            // 
+            this.btnLoadlayout.Location = new System.Drawing.Point(12, 172);
+            this.btnLoadlayout.Name = "btnLoadlayout";
+            this.btnLoadlayout.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadlayout.TabIndex = 10;
+            this.btnLoadlayout.Text = "Load";
+            this.btnLoadlayout.UseVisualStyleBackColor = true;
+            this.btnLoadlayout.Click += new System.EventHandler(this.btnLoadlayout_Click);
+            // 
+            // FactorySim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 621);
+            this.ClientSize = new System.Drawing.Size(714, 553);
+            this.Controls.Add(this.btnLoadlayout);
+            this.Controls.Add(this.btnOpenEditor);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbLayout);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.cbSpawnPoint);
             this.Controls.Add(this.label1);
@@ -108,7 +153,7 @@
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.btnSpawn);
             this.Controls.Add(this.canvas);
-            this.Name = "Form1";
+            this.Name = "FactorySim";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
             this.ResumeLayout(false);
@@ -125,6 +170,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbSpawnPoint;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.ComboBox cbLayout;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnOpenEditor;
+        private System.Windows.Forms.Button btnLoadlayout;
     }
 }
 

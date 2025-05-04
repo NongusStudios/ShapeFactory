@@ -16,9 +16,14 @@ namespace ShapeFactory {
             queueFree = new List<int>();
         }
 
-        public PhysicsBody AddBody(PhysicsBody body) {
+        public void Clear() {
+            bodies.Clear();
+            queueFree.Clear();
+        }
+
+        public T AddBody<T>(T body) where T: PhysicsBody {
             bodies.Add(body);
-            return bodies.Last();
+            return (T)bodies.Last();
         }
 
         public void PhysicsStep(double deltaTime) {

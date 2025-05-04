@@ -30,6 +30,20 @@ namespace ShapeFactory {
             elapsed = 0.0;
             currentFrame = 0;
         }
+        // Non-animated sprite with multiple frames for manual changing.
+        public Sprite(ShapeType type, Transform2D transform, Image[] frames) : base(type, transform, Color.White) {
+            Animated = false;
+            Frames = new List<Image>(frames);
+
+            elapsed = 0.0;
+            currentFrame = 0;
+        }
+
+        public void SetCurrentFrame(int frame) {
+            if(frame < Frames.Count && frame >= 0) {
+                currentFrame = frame;
+            }
+        }
 
         public override void Update(double dt) {
             if (!Animated) return;
@@ -65,7 +79,17 @@ namespace ShapeFactory {
                 y = (int)(Transform.Position.Y - Transform.Size.Y / 2.0);
                 w = (int)Transform.Size.X;
                 h = (int)Transform.Size.Y;
+
+                // Save state to restore it after drawing
+                var state = g.Save();
+
+                g.TranslateTransform(Transform.Position.X, Transform.Position.Y);
+                g.RotateTransform(Transform.Rotation);
+                g.TranslateTransform(-Transform.Position.X, -Transform.Position.Y);
+
                 g.DrawImage(Frames[currentFrame], new Rectangle(x, y, w, h), new Rectangle(0, 0, Frames[currentFrame].Width, Frames[currentFrame].Height), GraphicsUnit.Pixel);
+
+                g.Restore(state);
                 return;
             }
 

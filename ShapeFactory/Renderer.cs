@@ -23,6 +23,11 @@ namespace ShapeFactory {
             freeQueue.Clear();
         }
 
+        public void Clear() {
+            objects.Clear();
+            freeQueue.Clear();
+        }
+
         public T AddDrawable<T>(T d) where T: Drawable {
             objects.Add(d);
             return (T)objects.Last();
