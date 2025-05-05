@@ -7,6 +7,8 @@ using System.Text.Json;
 namespace ShapeFactory {
     public class Global {
         public static string LAYOUT_FOLDER = "../../Layouts";
+        public static int CanvasSizeX = 528;
+        public static int CanvasSizeY = 528;
     }
 
     public enum ShapeType {

@@ -17,11 +17,11 @@ namespace ShapeFactory {
             set { drawable = value; }
         }
 
-        public Staticbody PhysicsInstance;
+        public StaticBody PhysicsInstance;
 
         public StaticItem(Shape sh, Physics p) {
             ShapeInstance = sh;
-            PhysicsInstance = p.AddBody(new Staticbody(ShapeInstance.Type, ShapeInstance.Transform, 0));
+            PhysicsInstance = p.AddBody(new StaticBody(ShapeInstance.Type, ShapeInstance.Transform, 0));
         }
         public StaticItem(Line l, Physics p) {
             LineInstance = l;

@@ -45,5 +45,8 @@ namespace ShapeFactory.StaticItems {
                 punter.AddedVelocity = AddedVelocity;
             }
         }
+        public override void SetPos(Vector2 p) {
+            Position = p;
+        }
     }
 }

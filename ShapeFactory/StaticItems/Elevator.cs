@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ShapeFactory.StaticItems {
     public class Elevator : StaticItem {
         public Sprite Platform;
-        public Staticbody PlatformPhysics;
+        public StaticBody PlatformPhysics;
         public float Speed;
         public double Interval;
         private double elapsedTime;
@@ -30,7 +30,7 @@ namespace ShapeFactory.StaticItems {
                 ShapeType.Rectangle, new Transform2D(padPosition, new Vector2((float)(Properties.Resources.elevator_pad_0.Width / 2), (float)(Properties.Resources.elevator_pad_0.Height / 2))),
                 new Bitmap[] {Properties.Resources.elevator_pad_0, Properties.Resources.elevator_pad_1}
             ));
-            PlatformPhysics = p.AddBody(new Staticbody(ShapeType.Rectangle, Platform.Transform, 0));
+            PlatformPhysics = p.AddBody(new StaticBody(ShapeType.Rectangle, Platform.Transform, 0));
 
             Speed = speed;
             Interval = interval;
@@ -98,6 +98,10 @@ namespace ShapeFactory.StaticItems {
                 ele.Speed = Speed;
                 ele.Interval = Interval;
             }
+        }
+
+        public override void SetPos(Vector2 p) {
+            Position = p;
         }
     }
 }

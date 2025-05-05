@@ -43,5 +43,9 @@ namespace ShapeFactory.StaticItems
                 belt.Speed = Speed;
             }
         }
+
+        public override void SetPos(Vector2 p) {
+            Position = p;
+        }
     }
 }

@@ -35,6 +35,14 @@ namespace ShapeFactory {
             freeQueue.Clear();
         }
 
+        public void ClearItemsOnly() {
+            foreach(var item in items) {
+                item.QueueFree();
+            }
+            items.Clear();
+            freeQueue.Clear();
+        }
+
         public void AddItem(Item item) {
             items.Add(item);
         }

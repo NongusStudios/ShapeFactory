@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace ShapeFactory {
     public class Item {
         public Shape ShapeInstance;
-        public Rigidbody PhysicsInstance;
+        public RigidBody PhysicsInstance;
         private bool queueFree;
 
-        public Item(Shape sh, Physics p) {
+        public Item(Shape sh, Physics p, float mass) {
             ShapeInstance = sh;
-            PhysicsInstance = p.AddBody(new Rigidbody(ShapeInstance.Type, ShapeInstance.Transform, 1.0f, 1));
+            PhysicsInstance = p.AddBody(new RigidBody(ShapeInstance.Type, ShapeInstance.Transform, mass, 1));
             queueFree = false;
         }
 

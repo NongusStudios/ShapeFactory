@@ -1,0 +1,62 @@
+{
+  "b1": {
+    "$type": 1,
+    "PosX": 78,
+    "PosY": 120,
+    "Speed": 40
+  },
+  "b2": {
+    "$type": 1,
+    "PosX": 205,
+    "PosY": 120,
+    "Speed": 40
+  },
+  "r1": {
+    "$type": 6,
+    "Points": [
+      {
+        "IsEmpty": false,
+        "X": 268,
+        "Y": 141
+      },
+      {
+        "IsEmpty": false,
+        "X": 339,
+        "Y": 170
+      }
+    ]
+  },
+  "r2": {
+    "$type": 6,
+    "Points": [
+      {
+        "IsEmpty": false,
+        "X": 517,
+        "Y": 213
+      },
+      {
+        "IsEmpty": false,
+        "X": 84,
+        "Y": 522
+      }
+    ]
+  },
+  "teleporterA": {
+    "$type": 5,
+    "PosX": 62,
+    "PosY": 510,
+    "Rotation": 0
+  },
+  "teleporterB": {
+    "$type": 5,
+    "PosX": 94,
+    "PosY": 12,
+    "Rotation": 180
+  },
+  "pipe": {
+    "$type": 2,
+    "PosX": 512,
+    "PosY": 33,
+    "Rotation": 180
+  }
+}

@@ -24,10 +24,11 @@ namespace ShapeFactory {
         private Dictionary<string, StaticItem> layoutPreview;
 
         private Vector2 currentMousePosition;
-        private string currentSelection;
 
         private bool placingRamp = false;
         private Ramp previewRamp;
+
+        private bool draggingItem = false;
 
         public LayoutEditor() {
             InitializeComponent();
@@ -46,7 +47,6 @@ namespace ShapeFactory {
             p = new Physics();
 
             currentMousePosition = new Vector2();
-            currentSelection = "";
 
             indexLayoutsIntoComboBox();
         }
@@ -62,11 +62,6 @@ namespace ShapeFactory {
             var g = e.Graphics;
             r.Update(0.0);
             r.Draw(g);
-        }
-
-        private void canvas_MouseMove(object sender, MouseEventArgs e) {
-            currentMousePosition.X = (float)e.Location.X;
-            currentMousePosition.Y = (float)e.Location.Y;
         }
 
         private void spawnItemProperties(string name, string type) {
@@ -161,7 +156,18 @@ namespace ShapeFactory {
             updatePreview();
         }
 
-        private void canvas_Click(object sender, EventArgs e) {
+        private bool selectMousedOverItem() {
+            foreach (var entry in layoutPreview) {
+                var (name, item) = (entry.Key, entry.Value);
+                if (!(item is Ramp) && M.CheckPointInRect(currentMousePosition, item.ShapeInstance.Transform.Position, item.ShapeInstance.Transform.Size)) {
+                    listItems.SelectedItem = name + ": " + item.GetType().ToString();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void onLeftClick() {
             if (placingRamp) {
                 previewRamp.LineInstance.Points.Add(currentMousePosition);
                 btnPlaceRamp.Enabled = true;
@@ -170,15 +176,9 @@ namespace ShapeFactory {
             }
 
             // TODO add drag to move functionality
-            // TODO add collision for ramps
             // Check if mouse intersects an item
-            foreach (var entry in layoutPreview) {
-                var (name, item) = (entry.Key, entry.Value);
-                if (!(item is Ramp) && M.CheckPointInRect(currentMousePosition, item.ShapeInstance.Transform.Position, item.ShapeInstance.Transform.Size)) {
-                    currentSelection = name;
-                    listItems.SelectedItem = name + ": " + item.GetType().ToString();
-                    return;
-                }
+            if (selectMousedOverItem()) {
+                return;
             }
 
             if (tbItemName.Text == "" || layout.ContainsKey(tbItemName.Text)) {
@@ -198,7 +198,39 @@ namespace ShapeFactory {
             spawnItem(tbItemName.Text);
 
             updateItemList();
+            listItems.SelectedItem = tbItemName.Text + ": " + layoutPreview[tbItemName.Text].GetType().ToString();
             updatePreview();
+        }
+
+        private void canvas_MouseDown(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Left) {
+                onLeftClick();
+            } else if (e.Button == MouseButtons.Right) {
+                if (placingRamp) return;
+
+                if (selectMousedOverItem()) {
+                    draggingItem = true;
+                }
+            }
+        }
+
+        private void canvas_MouseUp(object sender, MouseEventArgs e) {
+            if (placingRamp) return;
+
+            if (draggingItem && e.Button == MouseButtons.Right) {
+                draggingItem = false;
+            }
+
+        }
+
+        private void canvas_MouseMove(object sender, MouseEventArgs e) {
+            currentMousePosition.X = (float)e.Location.X;
+            currentMousePosition.Y = (float)e.Location.Y;
+            if (draggingItem) {
+                var name = listItems.SelectedItem.ToString().Split(':')[0];
+                layout[name].SetPos(currentMousePosition);
+                updatePreview();
+            }
         }
 
         private void listItems_SelectedValueChanged(object sender, EventArgs e) {
@@ -398,5 +430,7 @@ namespace ShapeFactory {
 
         public virtual StaticItem CreateStaticItem(Renderer r, Physics p) { return new StaticItem(new Shape(ShapeType.Rectangle, new Transform2D(), Color.White), p); }
         public virtual void CopyPropsToStaticItem(StaticItem item) { }
+
+        public virtual void SetPos(Vector2 p) { }
     }
 }

@@ -41,7 +41,7 @@
             // 
             this.canvas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.canvas.Location = new System.Drawing.Point(172, 12);
+            this.canvas.Location = new System.Drawing.Point(344, 13);
             this.canvas.Name = "canvas";
             this.canvas.Size = new System.Drawing.Size(528, 528);
             this.canvas.TabIndex = 0;
@@ -56,6 +56,7 @@
             this.btnSpawn.TabIndex = 1;
             this.btnSpawn.Text = "Spawn";
             this.btnSpawn.UseVisualStyleBackColor = true;
+            this.btnSpawn.Click += new System.EventHandler(this.btnSpawn_Click);
             // 
             // lbl1
             // 
@@ -71,7 +72,7 @@
             this.cbShape.FormattingEnabled = true;
             this.cbShape.Location = new System.Drawing.Point(16, 60);
             this.cbShape.Name = "cbShape";
-            this.cbShape.Size = new System.Drawing.Size(121, 21);
+            this.cbShape.Size = new System.Drawing.Size(322, 21);
             this.cbShape.TabIndex = 3;
             // 
             // label1
@@ -88,7 +89,7 @@
             this.cbSpawnPoint.FormattingEnabled = true;
             this.cbSpawnPoint.Location = new System.Drawing.Point(13, 105);
             this.cbSpawnPoint.Name = "cbSpawnPoint";
-            this.cbSpawnPoint.Size = new System.Drawing.Size(121, 21);
+            this.cbSpawnPoint.Size = new System.Drawing.Size(325, 21);
             this.cbSpawnPoint.TabIndex = 5;
             // 
             // btnReset
@@ -99,13 +100,14 @@
             this.btnReset.TabIndex = 6;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // cbLayout
             // 
             this.cbLayout.FormattingEnabled = true;
             this.cbLayout.Location = new System.Drawing.Point(12, 145);
             this.cbLayout.Name = "cbLayout";
-            this.cbLayout.Size = new System.Drawing.Size(121, 21);
+            this.cbLayout.Size = new System.Drawing.Size(326, 21);
             this.cbLayout.TabIndex = 7;
             // 
             // label2
@@ -141,7 +143,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 553);
+            this.ClientSize = new System.Drawing.Size(884, 553);
             this.Controls.Add(this.btnLoadlayout);
             this.Controls.Add(this.btnOpenEditor);
             this.Controls.Add(this.label2);

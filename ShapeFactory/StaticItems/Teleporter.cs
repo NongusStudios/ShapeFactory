@@ -47,5 +47,9 @@ namespace ShapeFactory.StaticItems {
                 teleporter.ShapeInstance.Transform.Rotation = Rotation;
             }
         }
+
+        public override void SetPos(Vector2 p) {
+            Position = p;
+        }
     }
 }

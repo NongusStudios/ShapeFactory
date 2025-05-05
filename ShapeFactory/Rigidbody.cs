@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ShapeFactory {
-    public class Rigidbody : PhysicsBody {
+    public class RigidBody : PhysicsBody {
         public Vector2 Velocity;
         public float Mass;
 
-        public Rigidbody(ShapeType col, Transform2D transform, float mass, int layer): base(col, transform, layer) {
+        public RigidBody(ShapeType col, Transform2D transform, float mass, int layer): base(col, transform, layer) {
             Velocity = Vector2.Zero;
             Mass = mass;
         }

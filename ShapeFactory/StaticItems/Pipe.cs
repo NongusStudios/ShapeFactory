@@ -10,7 +10,9 @@ namespace ShapeFactory.StaticItems {
         public Pipe(Renderer r, Physics p, Vector2 position, float rotation) : base(r.AddDrawable(new Sprite(
             ShapeType.Rectangle, new Transform2D(position, new Vector2(Properties.Resources.spawn_pipe.Width / 2, Properties.Resources.spawn_pipe.Height / 2), rotation),
             Properties.Resources.spawn_pipe
-        )), p) {}
+        )), p) {
+            PhysicsInstance.QueueFree();
+        }
     }
 
     public class PipeProperties : StaticItemProperties {
@@ -35,6 +37,10 @@ namespace ShapeFactory.StaticItems {
                 pipe.ShapeInstance.Transform.Position = Position;
                 pipe.ShapeInstance.Transform.Rotation = Rotation;
             }
+        }
+
+        public override void SetPos(Vector2 p) {
+            Position = p;
         }
     }
 }

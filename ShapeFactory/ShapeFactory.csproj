@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Items\LeadBall.cs" />
     <Compile Include="LayoutEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +83,7 @@
       <DependentUpon>LayoutEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Line.cs" />
+    <Compile Include="RampBody.cs" />
     <Compile Include="StaticItems\Belt.cs" />
     <Compile Include="Drawable.cs" />
     <Compile Include="Factory.cs" />
@@ -94,10 +96,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Renderer.cs" />
-    <Compile Include="Rigidbody.cs" />
+    <Compile Include="RigidBody.cs" />
     <Compile Include="Shape.cs" />
     <Compile Include="Sprite.cs" />
-    <Compile Include="Staticbody.cs" />
+    <Compile Include="StaticBody.cs" />
     <Compile Include="StaticItem.cs" />
     <Compile Include="StaticItems\Elevator.cs" />
     <Compile Include="StaticItems\Pipe.cs" />

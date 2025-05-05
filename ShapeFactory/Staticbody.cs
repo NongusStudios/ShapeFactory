@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ShapeFactory {
-    public class Staticbody : PhysicsBody {
-        public Staticbody(ShapeType col, Transform2D transform, int layer) : base(col, transform, layer) {}
+    public class StaticBody : PhysicsBody {
+        public StaticBody(ShapeType col, Transform2D transform, int layer) : base(col, transform, layer) {}
     }
 }

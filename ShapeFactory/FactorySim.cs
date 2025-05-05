@@ -1,4 +1,5 @@
-﻿using ShapeFactory.StaticItems;
+﻿using ShapeFactory.Items;
+using ShapeFactory.StaticItems;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,16 +23,22 @@ namespace ShapeFactory {
         public const double PhysicsFrameRate = 50.0;
         private const string DefaultLayout = "default";
 
+        private Dictionary<string, Vector2> spawnPoints;
+
         public Factory factory;
 
         public FactorySim() {
             InitializeComponent();
+
+            cbShape.Items.Add(typeof(LeadBall).ToString());
+            cbShape.SelectedIndex = 0;
 
             if (!Directory.Exists(Global.LAYOUT_FOLDER)) Directory.CreateDirectory(Global.LAYOUT_FOLDER);
 
             factory = new Factory();
 
             lastFrameTime = DateTime.Now;
+            spawnPoints = new Dictionary<string, Vector2>();
 
             renderer = new Renderer();
             physics = new Physics();
@@ -81,6 +88,8 @@ namespace ShapeFactory {
         }
 
         private void loadLayout(string name) {
+            cbSpawnPoint.Items.Clear();
+            
             string jsonString = File.ReadAllText(Global.LAYOUT_FOLDER + "/" + name + ".json");
             var layout = JsonSerializer.Deserialize<Dictionary<string, StaticItemProperties>>(jsonString);
 
@@ -95,7 +104,14 @@ namespace ShapeFactory {
                     continue;
                 }
                 factory.AddStaticItem(props.CreateStaticItem(renderer, physics));
+
+                if(props is PipeProperties) {
+                    var p = props as PipeProperties;
+                    cbSpawnPoint.Items.Add(entry.Key);
+                    spawnPoints[entry.Key] = p.Position;
+                }
             }
+            cbSpawnPoint.SelectedIndex = 0;
         }
 
         private void btnLoadlayout_Click(object sender, EventArgs e) {
@@ -103,6 +119,19 @@ namespace ShapeFactory {
             renderer.Clear();
             physics.Clear();
             loadLayout(cbLayout.SelectedItem.ToString());
+        }
+
+        private void btnSpawn_Click(object sender, EventArgs e) {
+            var selectedItem = cbShape.SelectedItem.ToString();
+            var selectedSpawn = cbSpawnPoint.SelectedItem.ToString();
+
+            if(selectedItem == typeof(LeadBall).ToString()) {
+                factory.AddItem(new LeadBall(renderer, physics, spawnPoints[selectedSpawn]));
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e) {
+            factory.ClearItemsOnly();
         }
     }
 }
