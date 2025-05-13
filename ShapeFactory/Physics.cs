@@ -33,7 +33,17 @@ namespace ShapeFactory {
                     queueFree.Insert(0, i);
                     continue;
                 }
+
+                if (!body.Enabled) continue;
+
                 body.PhysicsStep(deltaTime);
+
+               /*for(int j = 0; j < bodies.Count; j++){
+                    if (i == j || !(body is RigidBody) ||
+                        !bodies[j].Enabled || bodies[j].IsQueuedFree()) continue;
+                    var overlap = body.OverlapWith(bodies[j]);
+                    if (overlap.Collision) body.CollisionWith(bodies[j], overlap);
+                }*/
             }
         }
     }

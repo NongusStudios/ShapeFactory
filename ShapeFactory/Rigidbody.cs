@@ -9,10 +9,18 @@ namespace ShapeFactory {
     public class RigidBody : PhysicsBody {
         public Vector2 Velocity;
         public float Mass;
+        private float invMass;
+        public float Restitution;
 
-        public RigidBody(ShapeType col, Transform2D transform, float mass, int layer): base(col, transform, layer) {
+        public RigidBody(ShapeType col, Transform2D transform, float mass, float restitution, int layer): base(col, transform, layer) {
             Velocity = Vector2.Zero;
             Mass = mass;
+            invMass = 1.0f / mass;
+            Restitution = restitution;
+        }
+
+        public override void CollisionWith(PhysicsBody other, Overlap overlap) {
+            
         }
 
         public override void PhysicsStep(double deltaTime) {

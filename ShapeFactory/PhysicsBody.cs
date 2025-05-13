@@ -29,9 +29,29 @@ namespace ShapeFactory {
         }
 
         public virtual Overlap OverlapWith(PhysicsBody other) {
-            // TODO Collision Calculation
-            return new Overlap();
+            // Shape on shape
+            if (Collider == other.Collider) {
+                if (Collider == ShapeType.Circle) {
+                    return Collision.IntersectCircle(Transform.ToCircle(), other.Transform.ToCircle());
+                }
+                else if (Collider == ShapeType.Rectangle) {
+                    return Collision.IntersectAABB(Transform.ToAABB(), other.Transform.ToAABB());
+                }
+            }
+
+            // Shape on other shape
+            if (Collider == ShapeType.Circle && other.Collider == ShapeType.Rectangle) {
+                return Collision.IntersectAABBwithCircle(other.Transform.ToAABB(), Transform.ToCircle());
+            } else if(Collider == ShapeType.Rectangle && other.Collider == ShapeType.Circle) {
+                return Collision.IntersectAABBwithCircle(Transform.ToAABB(), other.Transform.ToCircle());
+            }
+
+            
+
+            return new Overlap(false, new Vector2(), 0.0f);
         }
+
+        public virtual void CollisionWith(PhysicsBody other, Overlap overlap) { }
 
         public bool IsQueuedFree() {
             return queueFree;

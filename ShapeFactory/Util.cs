@@ -16,18 +16,6 @@ namespace ShapeFactory {
         Circle,
         Triangle
     }
-    
-    public struct Overlap {
-        public Overlap(bool Collision, Vector2 Normal, float Depth) {
-            this.Collision = Collision;
-            this.Normal = Normal;
-            this.Depth = Depth;
-        }
-
-        public bool Collision;
-        public Vector2 Normal;
-        public float Depth;
-    }
 
     public struct Transform2D {
         public Transform2D(Vector2 Position, Vector2 Size, float Rotation = 0.0f) {
@@ -39,6 +27,14 @@ namespace ShapeFactory {
         public Vector2 Position;
         public Vector2 Size;
         public float Rotation;
+
+        public AABB ToAABB() {
+            return new AABB(Position, Position - Size / 2.0f, Position + Size / 2.0f);
+        }
+
+        public Circle ToCircle() {
+            return new Circle(Position, Size.X / 2.0f);
+        }
     }
 
     public class M {
@@ -49,19 +45,6 @@ namespace ShapeFactory {
             if (v > max) return max;
             if (v < min) return min;
             return v;
-        }
-
-        public static bool CheckPointInRect(Vector2 point, Vector2 rectPos, Vector2 rectSize) {
-            var minX = rectPos.X - rectSize.X / 2.0f;
-            var maxX = rectPos.X + rectSize.X / 2.0f;
-            var minY = rectPos.Y - rectSize.Y / 2.0f;
-            var maxY = rectPos.Y + rectSize.Y / 2.0f;
-
-            if(point.X > minX && point.X < maxX &&
-               point.Y > minY && point.Y < maxY) {
-                return true;
-            }
-            return false;
         }
     }
 }

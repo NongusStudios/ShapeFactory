@@ -70,7 +70,7 @@ namespace ShapeFactory {
 
             }
             else if (type == typeof(Pipe).ToString()) {
-                layout.Add(name, new StaticItems.PipeProperties(currentMousePosition, 0.0f));
+                layout.Add(name, new StaticItems.PipeProperties(currentMousePosition, 0.0f, new Vector2()));
 
             }
             else if (type == typeof(Punter).ToString()) {
@@ -159,7 +159,7 @@ namespace ShapeFactory {
         private bool selectMousedOverItem() {
             foreach (var entry in layoutPreview) {
                 var (name, item) = (entry.Key, entry.Value);
-                if (!(item is Ramp) && M.CheckPointInRect(currentMousePosition, item.ShapeInstance.Transform.Position, item.ShapeInstance.Transform.Size)) {
+                if (!(item is Ramp) && Collision.PointInRect(currentMousePosition, item.ShapeInstance.Transform.ToAABB())) {
                     listItems.SelectedItem = name + ": " + item.GetType().ToString();
                     return true;
                 }

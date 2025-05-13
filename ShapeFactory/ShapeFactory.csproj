@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collision.cs" />
     <Compile Include="Items\LeadBall.cs" />
     <Compile Include="LayoutEditor.cs">
       <SubType>Form</SubType>

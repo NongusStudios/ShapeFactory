@@ -23,7 +23,7 @@ namespace ShapeFactory {
         public const double PhysicsFrameRate = 50.0;
         private const string DefaultLayout = "default";
 
-        private Dictionary<string, Vector2> spawnPoints;
+        private Dictionary<string, (Vector2, Vector2)> spawnPoints;
 
         public Factory factory;
 
@@ -38,7 +38,7 @@ namespace ShapeFactory {
             factory = new Factory();
 
             lastFrameTime = DateTime.Now;
-            spawnPoints = new Dictionary<string, Vector2>();
+            spawnPoints = new Dictionary<string, (Vector2, Vector2)>();
 
             renderer = new Renderer();
             physics = new Physics();
@@ -108,7 +108,7 @@ namespace ShapeFactory {
                 if(props is PipeProperties) {
                     var p = props as PipeProperties;
                     cbSpawnPoint.Items.Add(entry.Key);
-                    spawnPoints[entry.Key] = p.Position;
+                    spawnPoints[entry.Key] = (p.Position, p.AddedSpawnVelocity);
                 }
             }
             cbSpawnPoint.SelectedIndex = 0;
@@ -126,7 +126,9 @@ namespace ShapeFactory {
             var selectedSpawn = cbSpawnPoint.SelectedItem.ToString();
 
             if(selectedItem == typeof(LeadBall).ToString()) {
-                factory.AddItem(new LeadBall(renderer, physics, spawnPoints[selectedSpawn]));
+                var lb = new LeadBall(renderer, physics, spawnPoints[selectedSpawn].Item1);
+                lb.PhysicsInstance.Velocity = spawnPoints[selectedSpawn].Item2;
+                factory.AddItem(lb);
             }
         }
 

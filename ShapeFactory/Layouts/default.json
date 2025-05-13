@@ -3,12 +3,16 @@
     "$type": 2,
     "PosX": 29,
     "PosY": 9,
+    "AddedSpawnVelX": 0,
+    "AddedSpawnVelY": 0,
     "Rotation": 90
   },
   "spawnB": {
     "$type": 2,
     "PosX": 520,
     "PosY": 27,
+    "AddedSpawnVelX": -60,
+    "AddedSpawnVelY": 0,
     "Rotation": 180
   },
   "belt": {
