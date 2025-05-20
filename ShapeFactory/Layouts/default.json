@@ -4,7 +4,7 @@
     "PosX": 29,
     "PosY": 9,
     "AddedSpawnVelX": 0,
-    "AddedSpawnVelY": 0,
+    "AddedSpawnVelY": 50,
     "Rotation": 90
   },
   "spawnB": {

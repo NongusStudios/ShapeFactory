@@ -18,6 +18,7 @@ namespace ShapeFactory {
         private Renderer renderer;
         private Physics physics;
         private DateTime lastFrameTime;
+        private Random random;
 
         public const double MaxFrameRate = 60.0;
         public const double PhysicsFrameRate = 50.0;
@@ -30,7 +31,11 @@ namespace ShapeFactory {
         public FactorySim() {
             InitializeComponent();
 
+            random = new Random();
+
             cbShape.Items.Add(typeof(LeadBall).ToString());
+            cbShape.Items.Add(typeof(AnomalousTriangle).ToString());
+            cbShape.Items.Add(typeof(PlutoniumCylinder).ToString());
             cbShape.SelectedIndex = 0;
 
             if (!Directory.Exists(Global.LAYOUT_FOLDER)) Directory.CreateDirectory(Global.LAYOUT_FOLDER);
@@ -125,10 +130,21 @@ namespace ShapeFactory {
             var selectedItem = cbShape.SelectedItem.ToString();
             var selectedSpawn = cbSpawnPoint.SelectedItem.ToString();
 
-            if(selectedItem == typeof(LeadBall).ToString()) {
+            if (selectedItem == typeof(LeadBall).ToString()) {
                 var lb = new LeadBall(renderer, physics, spawnPoints[selectedSpawn].Item1);
                 lb.PhysicsInstance.Velocity = spawnPoints[selectedSpawn].Item2;
                 factory.AddItem(lb);
+            } else if (selectedItem == typeof(AnomalousTriangle).ToString()) {
+                var at = new AnomalousTriangle(renderer, physics, spawnPoints[selectedSpawn].Item1);
+                at.PhysicsInstance.Velocity = spawnPoints[selectedSpawn].Item2;
+                at.PhysicsInstance.AngularVelocity = (float)(random.NextDouble() * 2.0 - 1.0) * spawnPoints[selectedSpawn].Item2.Length() * 4.0f;
+                factory.AddItem(at);
+            } else if (selectedItem == typeof(PlutoniumCylinder).ToString()) {
+                var pc = new PlutoniumCylinder(renderer, physics, spawnPoints[selectedSpawn].Item1);
+                pc.PhysicsInstance.Velocity = spawnPoints[selectedSpawn].Item2;
+                factory.AddItem(pc);
+            } else {
+                MessageBox.Show(selectedItem + " is not a valid item!");
             }
         }
 

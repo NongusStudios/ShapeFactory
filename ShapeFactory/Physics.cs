@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace ShapeFactory {
     public class Physics {
         public static float GRAVITY = 9.8f;
+        public static float TERMINAL_VELOCITY = 220.0f;
 
         private List<PhysicsBody> bodies;
         private List<int> queueFree;

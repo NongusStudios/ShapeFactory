@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ShapeFactory.Items {
-    public class LeadBall : Item {
-        public LeadBall(Renderer r, Physics p, Vector2 position) : base(
-            r.AddDrawable(new Shape(ShapeType.Circle, 
-                new Transform2D(position, new Vector2(20.0f, 20.0f)), Color.DarkSlateGray)
-            ), p, 50.0f, 5.0f
+    public class AnomalousTriangle : Item {
+        public AnomalousTriangle(Renderer r, Physics p, Vector2 position) : base(
+            r.AddDrawable(new Sprite(ShapeType.Triangle,
+                new Transform2D(position, new Vector2(20.0f, 20.0f)), Properties.Resources.anomalous)
+            ), p, 10.0f, 5.0f
         ) {}
 
         public override void Update(double deltaTime) {

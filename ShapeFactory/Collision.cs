@@ -64,8 +64,40 @@ namespace ShapeFactory {
             return new Overlap(r > d, Vector2.Normalize(a.Position-b.Position), (float)Math.Sqrt(d));
         }
 
+        private static Vector2 directionVector(Vector2 target) {
+            Vector2[] compass = {
+                new Vector2( 0.0f, 1.0f),
+                new Vector2( 1.0f, 0.0f),
+                new Vector2( 0.0f,-1.0f),
+                new Vector2(-1.0f, 0.0f),
+            };
+
+            float max = 0.0f;
+            int best_match = -1;
+            for (int i = 0; i < compass.Length; i++) {
+                float dot = Vector2.Dot(Vector2.Normalize(target), compass[i]);
+                if (dot > max) {
+                    max = dot;
+                    best_match = i;
+                }
+            }
+
+            return compass[best_match];
+        }
+
         public static Overlap IntersectAABBwithCircle(AABB a, Circle b) {
-            return Overlap.NoCollision();
+            var center = b.Position;
+            var aabb_center = a.Center;
+            var diff = center - aabb_center;
+            
+            var aabb_half_extent = a.Max - a.Min;
+            aabb_half_extent /= 2.0f;
+            var clamped = new Vector2(M.Clamp(diff.X, -aabb_half_extent.X, aabb_half_extent.X), M.Clamp(diff.Y, -aabb_half_extent.Y, aabb_half_extent.Y));
+            var closest = aabb_center + clamped;
+
+            diff = closest - center;
+
+            return new Overlap(diff.LengthSquared() < b.Radius*b.Radius, directionVector(diff), diff.Length());
         }
 
         public static bool PointInRect(Vector2 point, AABB rect) {

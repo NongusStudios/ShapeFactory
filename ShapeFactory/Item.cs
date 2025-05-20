@@ -16,7 +16,12 @@ namespace ShapeFactory {
             queueFree = false;
         }
 
-        public virtual void Update(double deltaTime) { }
+        public virtual void Update(double deltaTime) {
+            ShapeInstance.Transform = PhysicsInstance.Transform;
+            if (ShapeInstance.Transform.Position.Y > Global.CanvasSizeY + ShapeInstance.Transform.Size.Y) {
+                QueueFree();
+            }
+        }
         public virtual void QueueFree() {
             queueFree = true;
             ShapeInstance.QueueFree();
