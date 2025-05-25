@@ -121,8 +121,11 @@
   <data name="anomalous" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\anomalous.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="belt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\belt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="belt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\belt1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="belt2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\belt2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="elevator" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\elevator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

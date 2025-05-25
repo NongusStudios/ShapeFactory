@@ -73,9 +73,19 @@ namespace ShapeFactory.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap belt {
+        internal static System.Drawing.Bitmap belt1 {
             get {
-                object obj = ResourceManager.GetObject("belt", resourceCulture);
+                object obj = ResourceManager.GetObject("belt1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap belt2 {
+            get {
+                object obj = ResourceManager.GetObject("belt2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

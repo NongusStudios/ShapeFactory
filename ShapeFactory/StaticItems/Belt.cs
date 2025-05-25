@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace ShapeFactory.StaticItems
 {
+
     public class Belt : StaticItem {
+        public static double AnimationInterval = 0.15;
         public float Speed;
         public Belt(Renderer r, Physics p, Vector2 position, float speed) : base(r.AddDrawable(
-            new Sprite(ShapeType.Rectangle, new Transform2D(position, new Vector2(Properties.Resources.belt.Width/2, Properties.Resources.belt.Height/2)), Properties.Resources.belt)
+            new Sprite(ShapeType.Rectangle, new Transform2D(position, new Vector2(Properties.Resources.belt1.Width/2, Properties.Resources.belt1.Height/2)), new Image[] { Properties.Resources.belt1,  Properties.Resources.belt2 }, AnimationInterval)
         ), p) {
             Speed = speed;
         }

@@ -22,6 +22,8 @@ namespace ShapeFactory {
             elapsed = 0.0;
             currentFrame = 0;
         }
+
+        // 'interval' is the time in seconds that will elapse before the next from is displayed
         public Sprite(ShapeType type, Transform2D transform, Image[] frames, double interval) : base(type, transform, Color.White) {
             Animated = true;
             Interval = interval;

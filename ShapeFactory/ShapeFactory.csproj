@@ -149,6 +149,8 @@
   <ItemGroup>
     <None Include="Resources\belt.bmp" />
     <Content Include="Resources\belt.png" />
+    <None Include="Resources\belt1.png" />
+    <None Include="Resources\belt2.png" />
     <Content Include="Resources\elevator.png" />
     <None Include="Resources\elevator_pad_0.png" />
     <None Include="Resources\elevator_pad_1.png" />
