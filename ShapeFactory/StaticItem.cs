@@ -25,7 +25,7 @@ namespace ShapeFactory {
         }
         public StaticItem(Line l, Physics p) {
             LineInstance = l;
-            PhysicsInstance = p.AddBody(new StaticBody(l.Points.ToArray(), l.Width, 0));
+            PhysicsInstance = p.AddBody(new RampBody(l.Points.ToArray(), l.Width, 0));
         }
 
         public virtual void Update(double deltaTime) { }

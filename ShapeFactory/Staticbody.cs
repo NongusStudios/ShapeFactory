@@ -8,6 +8,5 @@ using System.Threading.Tasks;
 namespace ShapeFactory {
     public class StaticBody : PhysicsBody {
         public StaticBody(ShapeType col, Transform2D transform, int layer) : base(col, transform, layer) {}
-        public StaticBody(Vector2[] points, float width, int layer) : base(points, width, layer) {}
     }
 }

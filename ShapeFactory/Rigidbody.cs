@@ -9,8 +9,12 @@ namespace ShapeFactory {
     public class RigidBody : PhysicsBody {
         public Vector2 Velocity;
         public float AngularVelocity;
-        public float Mass;
+
         private float invMass;
+        public float Mass {
+            get { return 1.0f / invMass; }
+            set { invMass = 1.0f / value; }
+        }
         public float Restitution;
 
         public RigidBody(ShapeType col, Transform2D transform, float mass, float restitution, int layer): base(col, transform, layer) {
@@ -22,18 +26,38 @@ namespace ShapeFactory {
         }
 
         public override void CollisionWith(PhysicsBody other, Overlap overlap) {
-            if(other == null) {
-                Transform.Position += overlap.Normal * overlap.Depth;
-            } else {
-                Transform.Position += overlap.Normal * overlap.Depth/2.0f;
+            if (other == null || other is StaticBody || other is RampBody) {
+                var velAlongNormal = Vector2.Dot(Velocity, overlap.Normal);
+                //if (velAlongNormal > 0.0f) return;
+
+                float imSc = -1.5f * velAlongNormal;
+                imSc /= invMass;
+
+                var impulse = imSc * overlap.Normal;
+                Velocity += invMass * impulse;
+                return;
             }
 
-            if (overlap.Normal.X != 0.0f) {
-                Velocity.X *= -1.0f;
-            }
+            if (other is RigidBody) {
+                var o = (RigidBody)other;
+                // relative velocity
+                var rv = o.Velocity - Velocity;
 
-            if (overlap.Normal.Y != 0.0f) {
-                Velocity.Y *= -1.0f;
+                var velAlongNormal = Vector2.Dot(rv, overlap.Normal);
+
+                if (velAlongNormal > 0.0f) return;
+
+                // calculate restitution
+                float rest = Math.Min(Restitution, o.Restitution);
+
+                // impulse scalar
+                float imSc = -(1.0f + rest) * velAlongNormal;
+                imSc /= invMass + o.invMass;
+
+                // apply impulse
+                var impulse = imSc * overlap.Normal;
+                Velocity   += invMass * impulse;
+                o.Velocity -= o.invMass * impulse;
             }
         }
 
@@ -61,7 +85,10 @@ namespace ShapeFactory {
                 overlap.Depth += aabb.Max.Y - Global.CanvasSizeY;
             }
 
-            if (overlap.Collision) CollisionWith(null, overlap);
+            Transform.Position += overlap.Normal * overlap.Depth;
+            if (overlap.Collision) {
+                CollisionWith(null, overlap);
+            }
         }
 
         public override void PhysicsStep(double deltaTime) {
@@ -70,7 +97,6 @@ namespace ShapeFactory {
             Velocity.X = M.Clamp(Velocity.X, -Physics.TERMINAL_VELOCITY, Physics.TERMINAL_VELOCITY);
             Velocity.Y = M.Clamp(Velocity.Y, -Physics.TERMINAL_VELOCITY, Physics.TERMINAL_VELOCITY);
 
-            // TODO
             Velocity.Y += Physics.GRAVITY * Physics.GRAVITY * dt;
             Transform.Position += Velocity * dt;
             Transform.Rotation += AngularVelocity * dt;

@@ -120,6 +120,11 @@ namespace ShapeFactory {
         }
 
         private void btnLoadlayout_Click(object sender, EventArgs e) {
+            if (cbLayout.SelectedItem == null) {
+                MessageBox.Show("Must select layout before loading!");
+                return;
+            }
+            
             factory.Clear();
             renderer.Clear();
             physics.Clear();
@@ -137,7 +142,7 @@ namespace ShapeFactory {
             } else if (selectedItem == typeof(AnomalousTriangle).ToString()) {
                 var at = new AnomalousTriangle(renderer, physics, spawnPoints[selectedSpawn].Item1);
                 at.PhysicsInstance.Velocity = spawnPoints[selectedSpawn].Item2;
-                at.PhysicsInstance.AngularVelocity = (float)(random.NextDouble() * 2.0 - 1.0) * spawnPoints[selectedSpawn].Item2.Length() * 4.0f;
+                at.PhysicsInstance.AngularVelocity = (float)(random.NextDouble() * 2.0 - 1.0) * spawnPoints[selectedSpawn].Item2.Length();
                 factory.AddItem(at);
             } else if (selectedItem == typeof(PlutoniumCylinder).ToString()) {
                 var pc = new PlutoniumCylinder(renderer, physics, spawnPoints[selectedSpawn].Item1);

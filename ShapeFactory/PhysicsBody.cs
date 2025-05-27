@@ -12,9 +12,6 @@ namespace ShapeFactory {
         public bool Enabled;
         public ShapeType Collider;
         public Transform2D Transform;
-        // will be used instead of Transform when collider is equal to ShapeType.RAMP
-        public Vector2[] LinePoints;
-        public float LineWidth;
         public int Layer;
 
         public PhysicsBody(ShapeType col, Transform2D transform, int layer) {
@@ -23,15 +20,6 @@ namespace ShapeFactory {
             Transform = transform;
             Layer = layer;
             Enabled = true;
-        }
-
-        public PhysicsBody(Vector2[] linePoints, float lineWidth, int layer) {
-            queueFree = false;
-            Collider = ShapeType.Ramp;
-            LinePoints = linePoints;
-            LineWidth = lineWidth;
-            Layer = layer;
-            Enabled=true;
         }
 
         public virtual void PhysicsStep(double deltaTime) { }
@@ -58,14 +46,8 @@ namespace ShapeFactory {
             } else if((Collider == ShapeType.Rectangle || Collider == ShapeType.Triangle) && other.Collider == ShapeType.Circle) {
                 return Collision.IntersectAABBwithCircle(Transform.ToAABB(), other.Transform.ToCircle());
             }
-            
-            if (Collider == ShapeType.Ramp && other.Collider == ShapeType.Circle) {
-                return Collision.IntersectCircleWithRamp(other.Transform.ToCircle(), LinePoints, LineWidth);
-            } else if (other.Collider == ShapeType.Ramp && Collider == ShapeType.Circle) {
-                return Collision.IntersectCircleWithRamp(Transform.ToCircle(), other.LinePoints, other.LineWidth);
-            }
 
-            return new Overlap(false, new Vector2(), 0.0f);
+            return new Overlap();
         }
 
         public virtual void CollisionWith(PhysicsBody other, Overlap overlap) { }

@@ -28,6 +28,7 @@ namespace ShapeFactory {
         }
 
         public void PhysicsStep(double deltaTime) {
+            var collidedBodies = new HashSet<(int, int)>();
             for(int i = 0; i < bodies.Count; i++) {
                 var body = bodies[i];
                 if (body.IsQueuedFree()) {
@@ -35,20 +36,25 @@ namespace ShapeFactory {
                     continue;
                 }
 
-                if (!body.Enabled) continue;
+                if (!body.Enabled || !(body is RigidBody)) continue;
 
                 body.PhysicsStep(deltaTime);
                 
-                for(int j = 0; j < bodies.Count; j++){
-                    if (i == j || !(body is RigidBody) ||
-                        !bodies[j].Enabled || bodies[j].IsQueuedFree()) continue;
+                for (int j = 0; j < bodies.Count; j++) {
+                    if (i == j || !bodies[j].Enabled || bodies[j].IsQueuedFree() ||
+                        collidedBodies.Contains((i, j))) continue;
                     var overlap = body.OverlapWith(bodies[j]);
-                    if (overlap.Collision) body.CollisionWith(bodies[j], overlap);
+                    if (overlap.Collision) {
+                        body.CollisionWith(bodies[j], overlap);
+                        // keeps track of what bodies have already collided and don't need to be checked again
+                        collidedBodies.Add((j, i));
+                    }
                 }
-                
                 // check with wall collision
                 body.CollideWithBoundaries();
             }
+
+            collidedBodies.Clear();
         }
     }
 }

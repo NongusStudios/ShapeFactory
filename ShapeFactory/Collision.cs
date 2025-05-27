@@ -69,7 +69,7 @@ namespace ShapeFactory {
                 }
             } else {
                 if (dy > 0.0f) {
-                    n.Y = 1.0f;
+                    n.Y =  1.0f;
                 } else {
                     n.Y = -1.0f;
                 }

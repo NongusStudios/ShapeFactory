@@ -11,7 +11,7 @@ namespace ShapeFactory.Items {
         public LeadBall(Renderer r, Physics p, Vector2 position) : base(
             r.AddDrawable(new Shape(ShapeType.Circle, 
                 new Transform2D(position, new Vector2(20.0f, 20.0f)), Color.DarkSlateGray)
-            ), p, 50.0f, 5.0f
+            ), p, 5.0f, 0.1f
         ) {}
 
         public override void Update(double deltaTime) {
