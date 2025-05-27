@@ -38,13 +38,16 @@ namespace ShapeFactory {
                 if (!body.Enabled) continue;
 
                 body.PhysicsStep(deltaTime);
-
-               /*for(int j = 0; j < bodies.Count; j++){
+                
+                for(int j = 0; j < bodies.Count; j++){
                     if (i == j || !(body is RigidBody) ||
                         !bodies[j].Enabled || bodies[j].IsQueuedFree()) continue;
                     var overlap = body.OverlapWith(bodies[j]);
                     if (overlap.Collision) body.CollisionWith(bodies[j], overlap);
-                }*/
+                }
+                
+                // check with wall collision
+                body.CollideWithBoundaries();
             }
         }
     }

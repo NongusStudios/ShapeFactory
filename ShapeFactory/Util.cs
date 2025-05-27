@@ -14,7 +14,8 @@ namespace ShapeFactory {
     public enum ShapeType {
         Rectangle = 0,
         Circle,
-        Triangle
+        Triangle,
+        Ramp,
     }
 
     public struct Transform2D {

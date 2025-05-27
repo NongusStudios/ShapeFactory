@@ -1,0 +1,18 @@
+{
+  "spawn2": {
+    "$type": 2,
+    "PosX": 464,
+    "PosY": 513,
+    "AddedSpawnVelX": -200,
+    "AddedSpawnVelY": -1000,
+    "Rotation": -90
+  },
+  "spawn": {
+    "$type": 2,
+    "PosX": 28,
+    "PosY": 12,
+    "AddedSpawnVelX": 0,
+    "AddedSpawnVelY": 100,
+    "Rotation": 90
+  }
+}

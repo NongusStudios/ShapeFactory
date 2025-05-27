@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 namespace ShapeFactory {
     public class Line : Drawable {
         public List<Vector2> Points;
+        public float Width;
         public Pen DrawPen;
 
         public Line(Vector2[] points, float width, Color colour) : base() {
             Points = new List<Vector2>(points);
+            Width = width;
             ChangeColourAndWidth(colour, width);
         }
 

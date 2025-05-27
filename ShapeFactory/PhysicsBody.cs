@@ -12,6 +12,9 @@ namespace ShapeFactory {
         public bool Enabled;
         public ShapeType Collider;
         public Transform2D Transform;
+        // will be used instead of Transform when collider is equal to ShapeType.RAMP
+        public Vector2[] LinePoints;
+        public float LineWidth;
         public int Layer;
 
         public PhysicsBody(ShapeType col, Transform2D transform, int layer) {
@@ -22,6 +25,15 @@ namespace ShapeFactory {
             Enabled = true;
         }
 
+        public PhysicsBody(Vector2[] linePoints, float lineWidth, int layer) {
+            queueFree = false;
+            Collider = ShapeType.Ramp;
+            LinePoints = linePoints;
+            LineWidth = lineWidth;
+            Layer = layer;
+            Enabled=true;
+        }
+
         public virtual void PhysicsStep(double deltaTime) { }
 
         public virtual void QueueFree() {
@@ -30,28 +42,34 @@ namespace ShapeFactory {
 
         public virtual Overlap OverlapWith(PhysicsBody other) {
             // Shape on shape
-            if (Collider == other.Collider) {
+            if (Collider == other.Collider || (      Collider == ShapeType.Rectangle && other.Collider == ShapeType.Triangle) ||
+                                              (other.Collider == ShapeType.Rectangle && Collider == ShapeType.Triangle)) {
                 if (Collider == ShapeType.Circle) {
                     return Collision.IntersectCircle(Transform.ToCircle(), other.Transform.ToCircle());
                 }
-                else if (Collider == ShapeType.Rectangle) {
+                else {
                     return Collision.IntersectAABB(Transform.ToAABB(), other.Transform.ToAABB());
                 }
             }
 
             // Shape on other shape
-            if (Collider == ShapeType.Circle && other.Collider == ShapeType.Rectangle) {
+            if (Collider == ShapeType.Circle && (other.Collider == ShapeType.Rectangle || other.Collider == ShapeType.Triangle)) {
                 return Collision.IntersectAABBwithCircle(other.Transform.ToAABB(), Transform.ToCircle());
-            } else if(Collider == ShapeType.Rectangle && other.Collider == ShapeType.Circle) {
+            } else if((Collider == ShapeType.Rectangle || Collider == ShapeType.Triangle) && other.Collider == ShapeType.Circle) {
                 return Collision.IntersectAABBwithCircle(Transform.ToAABB(), other.Transform.ToCircle());
             }
-
             
+            if (Collider == ShapeType.Ramp && other.Collider == ShapeType.Circle) {
+                return Collision.IntersectCircleWithRamp(other.Transform.ToCircle(), LinePoints, LineWidth);
+            } else if (other.Collider == ShapeType.Ramp && Collider == ShapeType.Circle) {
+                return Collision.IntersectCircleWithRamp(Transform.ToCircle(), other.LinePoints, other.LineWidth);
+            }
 
             return new Overlap(false, new Vector2(), 0.0f);
         }
 
         public virtual void CollisionWith(PhysicsBody other, Overlap overlap) { }
+        public virtual void CollideWithBoundaries() { }
 
         public bool IsQueuedFree() {
             return queueFree;

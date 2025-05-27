@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace ShapeFactory {
     public struct AABB {
@@ -46,14 +47,35 @@ namespace ShapeFactory {
     }
 
     public class Collision {
-
         public static Overlap IntersectAABB(AABB a, AABB b) {
-            Vector2 n = b.Center - a.Center;
-
             if (a.Max.X < b.Min.X || a.Min.X > b.Max.X) return Overlap.NoCollision();
             if (a.Max.Y < b.Min.Y || a.Min.Y > b.Max.Y) return Overlap.NoCollision();
 
-            return new Overlap(true, Vector2.Normalize(n), n.Length());
+            Vector2 n = Vector2.Zero;
+            var dx = a.Center.X - b.Center.X;
+            var dy = a.Center.Y - b.Center.Y;
+
+            var aabb_half_extent = a.Max - a.Min;
+            aabb_half_extent /= 2.0f;
+
+            var px = aabb_half_extent.X - Math.Abs(dx);
+            var py = aabb_half_extent.Y - Math.Abs(dy);
+
+            if (px < py) {
+                if (dx > 0.0f) {
+                    n.X =  1.0f;
+                } else {
+                    n.X = -1.0f;
+                }
+            } else {
+                if (dy > 0.0f) {
+                    n.Y = 1.0f;
+                } else {
+                    n.Y = -1.0f;
+                }
+            }
+
+                return new Overlap(true, n, Vector2.Distance(a.Center, b.Center));
         }
 
         public static Overlap IntersectCircle(Circle a, Circle b) {
@@ -62,6 +84,14 @@ namespace ShapeFactory {
 
             float d = Vector2.DistanceSquared(a.Position, b.Position);
             return new Overlap(r > d, Vector2.Normalize(a.Position-b.Position), (float)Math.Sqrt(d));
+        }
+
+        public static Overlap IntersectCircleWithRamp(Circle a, Vector2[] points, float width) {
+            return new Overlap();
+        }
+
+        public static Overlap IntersectAABBWithRamp(AABB a, Vector2[] points, float width) {
+            return new Overlap();
         }
 
         private static Vector2 directionVector(Vector2 target) {
@@ -82,6 +112,8 @@ namespace ShapeFactory {
                 }
             }
 
+            if (best_match == -1) return Vector2.Zero;
+
             return compass[best_match];
         }
 
@@ -97,7 +129,7 @@ namespace ShapeFactory {
 
             diff = closest - center;
 
-            return new Overlap(diff.LengthSquared() < b.Radius*b.Radius, directionVector(diff), diff.Length());
+            return new Overlap(diff.LengthSquared() < b.Radius*b.Radius, directionVector(diff), Vector2.Distance(center, aabb_center));
         }
 
         public static bool PointInRect(Vector2 point, AABB rect) {

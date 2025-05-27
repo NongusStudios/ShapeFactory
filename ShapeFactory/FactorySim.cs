@@ -22,7 +22,7 @@ namespace ShapeFactory {
 
         public const double MaxFrameRate = 60.0;
         public const double PhysicsFrameRate = 50.0;
-        private const string DefaultLayout = "default";
+        private const string DefaultLayout = "test1";
 
         private Dictionary<string, (Vector2, Vector2)> spawnPoints;
 

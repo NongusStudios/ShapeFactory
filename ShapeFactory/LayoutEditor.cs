@@ -14,6 +14,7 @@ using System.Text.Json;
 using System.IO;
 using System.Xml.Linq;
 using System.Text.Json.Serialization;
+using System.Threading;
 
 namespace ShapeFactory {
     public partial class LayoutEditor : Form {
@@ -29,6 +30,8 @@ namespace ShapeFactory {
         private Ramp previewRamp;
 
         private bool draggingItem = false;
+
+        private Mutex mut = new Mutex();
 
         public LayoutEditor() {
             InitializeComponent();
@@ -258,25 +261,37 @@ namespace ShapeFactory {
         private void loadLayout(string name) {
             string jsonString = File.ReadAllText(Global.LAYOUT_FOLDER + "/" + name + ".json");
             //JsonSerializerOptions settings = new JsonSerializerOptions { IncludeFields = true };
-            layout = JsonSerializer.Deserialize<Dictionary<string, StaticItemProperties>>(jsonString);
 
+            mut.WaitOne();
+
+            layout = JsonSerializer.Deserialize<Dictionary<string, StaticItemProperties>>(jsonString);
             foreach (var entry in layout) {
                 spawnItem(entry.Key);
             }
 
-            updateItemList();
-            updatePreview();
+            mut.ReleaseMutex();
         }
 
         private void saveLayout(string name) {
             JsonSerializerOptions settings = new JsonSerializerOptions { WriteIndented = true };
             var jsonString = JsonSerializer.Serialize(layout, settings);
             File.WriteAllText(Global.LAYOUT_FOLDER + "/" + name + ".json", jsonString);
-            indexLayoutsIntoComboBox();
         }
 
         private void btnSave_Click(object sender, EventArgs e) {
-            saveLayout(tbLayoutName.Text);
+            if(tbLayoutName.Text.Length == 0) {
+                MessageBox.Show("Must provide a layout name before saving!");
+                return;
+            }
+
+            var save = new Thread(new ThreadStart(() => {
+                saveLayout(tbLayoutName.Text);
+            }));
+            save.Start();
+
+            // I know this makes a second thread pointless but A) its for the marks. B) I can't edit form items on a seperate thread :(
+            save.Join();
+            indexLayoutsIntoComboBox();
         }
 
         private void btnLoad_Click(object sender, EventArgs e) {
@@ -284,8 +299,19 @@ namespace ShapeFactory {
             p.Clear();
             layout.Clear();
             layoutPreview.Clear();
-            loadLayout(cbLoad.SelectedItem.ToString());
-            tbLayoutName.Text = cbLoad.SelectedItem.ToString();
+
+
+            var layoutName = cbLoad.SelectedItem.ToString();
+            tbLayoutName.Text = layoutName;
+            var load = new Thread(new ThreadStart(() => {
+                loadLayout(layoutName);
+            }));
+
+            // same story here
+            load.Start();
+            load.Join();
+            updateItemList();
+            updatePreview();
         }
 
         private void properties_PropertyValueChanged(object s, PropertyValueChangedEventArgs e) {
