@@ -11,7 +11,7 @@ namespace ShapeFactory.StaticItems {
         public Pipe(Renderer r, Physics p, Vector2 position, float rotation, Vector2 AddedSpawnVelocity) : base(r.AddDrawable(new Sprite(
             ShapeType.Rectangle, new Transform2D(position, new Vector2(Properties.Resources.spawn_pipe.Width / 2, Properties.Resources.spawn_pipe.Height / 2), rotation),
             Properties.Resources.spawn_pipe
-        )), p) {
+        )), p, ShapeType.Rectangle) {
             PhysicsInstance.QueueFree();
         }
     }

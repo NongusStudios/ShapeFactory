@@ -454,7 +454,7 @@ namespace ShapeFactory {
     public class StaticItemProperties {
         public StaticItemProperties() {}
 
-        public virtual StaticItem CreateStaticItem(Renderer r, Physics p) { return new StaticItem(new Shape(ShapeType.Rectangle, new Transform2D(), Color.White), p); }
+        public virtual StaticItem CreateStaticItem(Renderer r, Physics p) { return new StaticItem(new Shape(ShapeType.Rectangle, new Transform2D(), Color.White), p, ShapeType.Rectangle); }
         public virtual void CopyPropsToStaticItem(StaticItem item) { }
 
         public virtual void SetPos(Vector2 p) { }

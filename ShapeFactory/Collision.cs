@@ -65,13 +65,13 @@ namespace ShapeFactory {
                 if (dx > 0.0f) {
                     n.X =  1.0f;
                 } else {
-                    n.X = -1.0f;
+                    n.X =  -1.0f;
                 }
             } else {
                 if (dy > 0.0f) {
                     n.Y =  1.0f;
                 } else {
-                    n.Y = -1.0f;
+                    n.Y =  -1.0f;
                 }
             }
 

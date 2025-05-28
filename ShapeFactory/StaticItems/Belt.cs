@@ -15,8 +15,14 @@ namespace ShapeFactory.StaticItems
         public float Speed;
         public Belt(Renderer r, Physics p, Vector2 position, float speed) : base(r.AddDrawable(
             new Sprite(ShapeType.Rectangle, new Transform2D(position, new Vector2(Properties.Resources.belt1.Width/2, Properties.Resources.belt1.Height/2)), new Image[] { Properties.Resources.belt1,  Properties.Resources.belt2 }, AnimationInterval)
-        ), p) {
+        ), p, ShapeType.Rectangle) {
             Speed = speed;
+            PhysicsInstance.OnCollision = (other, overlap) => {
+                if (other is RigidBody) {
+                    var o = (RigidBody)other;
+                    o.Velocity.X += Speed;
+                }
+            };
         }
 
         public override void Update(double deltaTime) {}

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShapeFactory {
     public class StaticBody : PhysicsBody {
+        public Action<PhysicsBody, Overlap> OnCollision = (o, ov) => { };
         public StaticBody(ShapeType col, Transform2D transform, int layer) : base(col, transform, layer) {}
     }
 }

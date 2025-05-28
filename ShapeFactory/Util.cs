@@ -42,6 +42,10 @@ namespace ShapeFactory {
         public static float Lerp(float firstFloat, float secondFloat, float by) {
             return firstFloat * (1 - by) + secondFloat * by;
         }
+
+        public static Vector2 Lerp(Vector2 firstVec, Vector2 secondVec, float by) {
+            return new Vector2(Lerp(firstVec.X, secondVec.X, by), Lerp(firstVec.Y, secondVec.Y, by));
+        }
         public static float Clamp(float v, float min, float max) {
             if (v > max) return max;
             if (v < min) return min;

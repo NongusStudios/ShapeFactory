@@ -1,18 +1,32 @@
 {
-  "spawn2": {
+  "spawnA": {
     "$type": 2,
-    "PosX": 464,
-    "PosY": 513,
-    "AddedSpawnVelX": -200,
-    "AddedSpawnVelY": -1000,
+    "PosX": 54,
+    "PosY": 9,
+    "AddedSpawnVelX": 0,
+    "AddedSpawnVelY": 40,
+    "Rotation": 90
+  },
+  "spawnB": {
+    "$type": 2,
+    "PosX": 483,
+    "PosY": 515,
+    "AddedSpawnVelX": -500,
+    "AddedSpawnVelY": -2000,
     "Rotation": -90
   },
-  "spawn": {
+  "b": {
+    "$type": 1,
+    "PosX": 65,
+    "PosY": 157,
+    "Speed": 80
+  },
+  "spawnC": {
     "$type": 2,
-    "PosX": 28,
+    "PosX": 313,
     "PosY": 12,
     "AddedSpawnVelX": 0,
-    "AddedSpawnVelY": 100,
+    "AddedSpawnVelY": 0,
     "Rotation": 90
   }
 }

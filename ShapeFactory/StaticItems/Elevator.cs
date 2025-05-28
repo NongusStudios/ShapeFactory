@@ -19,7 +19,7 @@ namespace ShapeFactory.StaticItems {
         public Elevator(Renderer r, Physics p, Vector2 position, bool platformIsRight, float speed, double interval) : base(r.AddDrawable(new Sprite(
             ShapeType.Rectangle, new Transform2D(position, new Vector2((float)(Properties.Resources.elevator.Width/2), (float) (Properties.Resources.elevator.Height/2))),
             Properties.Resources.elevator
-        )), p) {
+        )), p, ShapeType.Rectangle) {
             var padPosition = position;
             padPosition.X += (platformIsRight)
                 ?  (Properties.Resources.elevator_pad_0.Width/4 + Properties.Resources.elevator.Width/4)
@@ -53,6 +53,7 @@ namespace ShapeFactory.StaticItems {
                 var dest = (direction > 0) ? bottomPos() : topPos();
                 Platform.Transform.Position.Y += Speed * (float)deltaTime * (float)direction;
                 Platform.Transform.Position.Y = M.Clamp(Platform.Transform.Position.Y, topPos(), bottomPos());
+                PlatformPhysics.Transform = Platform.Transform;
 
                 if (Math.Abs(Platform.Transform.Position.Y - nextPos) < 0.1f) { // Reached top or bottom
                     Platform.SetCurrentFrame(0);

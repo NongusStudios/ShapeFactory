@@ -11,8 +11,14 @@ namespace ShapeFactory.StaticItems {
         public Punter(Renderer r, Physics p, Vector2 position, Vector2 addedVelocity) : base(r.AddDrawable(new Sprite(
             ShapeType.Rectangle, new Transform2D(position, new Vector2((float)(Properties.Resources.punter.Width/2), (float)(Properties.Resources.punter.Height/2))),
             Properties.Resources.punter
-        )), p) {
+        )), p, ShapeType.Rectangle) {
             AddedVelocity = addedVelocity;
+            PhysicsInstance.OnCollision = (other, overlap) => {
+                if(other is RigidBody && overlap.Normal.Y > 0.0f) {
+                    var o = (RigidBody)other;
+                    o.Velocity += AddedVelocity;
+                }
+            };
         }
 
         public override void Update(double deltaTime) {

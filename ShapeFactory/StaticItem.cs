@@ -19,9 +19,9 @@ namespace ShapeFactory {
 
         public StaticBody PhysicsInstance;
 
-        public StaticItem(Shape sh, Physics p) {
+        public StaticItem(Shape sh, Physics p, ShapeType col) {
             ShapeInstance = sh;
-            PhysicsInstance = p.AddBody(new StaticBody(ShapeInstance.Type, ShapeInstance.Transform, 0));
+            PhysicsInstance = p.AddBody(new StaticBody(col, ShapeInstance.Transform, 0));
         }
         public StaticItem(Line l, Physics p) {
             LineInstance = l;

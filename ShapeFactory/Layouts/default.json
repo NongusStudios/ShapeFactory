@@ -11,7 +11,7 @@
     "$type": 2,
     "PosX": 520,
     "PosY": 27,
-    "AddedSpawnVelX": -60,
+    "AddedSpawnVelX": -70,
     "AddedSpawnVelY": 0,
     "Rotation": 180
   },
@@ -296,6 +296,6 @@
     "PosX": 316,
     "PosY": 516,
     "AddedVelX": -100,
-    "AddedVelY": 40
+    "AddedVelY": -500
   }
 }

@@ -11,7 +11,7 @@ namespace ShapeFactory.Items {
         public AnomalousTriangle(Renderer r, Physics p, Vector2 position) : base(
             r.AddDrawable(new Sprite(ShapeType.Triangle,
                 new Transform2D(position, new Vector2(20.0f, 20.0f)), Properties.Resources.anomalous)
-            ), p, 0.4f, 1.0f
+            ), p, ShapeType.Rectangle, 1.0f, 1.0f
         ) {}
 
         public override void Update(double deltaTime) {

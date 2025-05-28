@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 namespace ShapeFactory.StaticItems {
     public class Teleporter : StaticItem {
         public Teleporter Destination;
+        private bool justTeleportedTo = false;
+        private double lastTeleport = 0.0;
 
         // Utility function for instancing 2 teleporters and linking them
         public static (Teleporter, Teleporter) CreateTeleporters(Renderer r, Physics p, Vector2 positionA, float rotationA, Vector2 positionB, float rotationB) {
@@ -20,11 +22,20 @@ namespace ShapeFactory.StaticItems {
         public Teleporter(Renderer r, Physics p, Vector2 position, float rotation) : base(r.AddDrawable(new Sprite(
             ShapeType.Rectangle, new Transform2D(position, new Vector2((float)(Properties.Resources.teleporter.Width / 2), (float)(Properties.Resources.teleporter.Height / 2)), rotation),
             Properties.Resources.teleporter
-        )), p) {}
+        )), p, ShapeType.Rectangle) {
+            PhysicsInstance.OnCollision = (o, olap) => {
+
+            };
+        }
 
         public void Link(Teleporter dest) {
             Destination = dest;
             dest.Destination = this;
+        }
+
+        public override void Update(double deltaTime) {
+            if (justTeleportedTo && lastTeleport >= 0.5) justTeleportedTo = false;
+            else lastTeleport += deltaTime;
         }
     }
 
