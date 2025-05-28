@@ -48,12 +48,12 @@ namespace ShapeFactory {
 
     public class Collision {
         public static Overlap IntersectAABB(AABB a, AABB b) {
-            if (a.Max.X < b.Min.X || a.Min.X > b.Max.X) return Overlap.NoCollision();
+            /*if (a.Max.X < b.Min.X || a.Min.X > b.Max.X) return Overlap.NoCollision();
             if (a.Max.Y < b.Min.Y || a.Min.Y > b.Max.Y) return Overlap.NoCollision();
 
             Vector2 n = Vector2.Zero;
-            var dx = a.Center.X - b.Center.X;
-            var dy = a.Center.Y - b.Center.Y;
+            var dx = b.Center.X - a.Center.X;
+            var dy = b.Center.Y - a.Center.Y;
 
             var aabb_half_extent = a.Max - a.Min;
             aabb_half_extent /= 2.0f;
@@ -63,7 +63,7 @@ namespace ShapeFactory {
 
             if (px < py) {
                 if (dx > 0.0f) {
-                    n.X =  1.0f;
+                    n.X =   1.0f;
                 } else {
                     n.X =  -1.0f;
                 }
@@ -73,17 +73,71 @@ namespace ShapeFactory {
                 } else {
                     n.Y =  -1.0f;
                 }
+            }*/
+
+            var n = b.Center - a.Center;
+
+            // half extents
+            var aExtent = (a.Max.X - a.Min.X) / 2.0f;
+            var bExtent = (b.Max.X - b.Min.X) / 2.0f;
+
+            var xOverlap = aExtent + bExtent - Math.Abs(n.X);
+
+            if(xOverlap > 0.0f) {
+                aExtent = (a.Max.Y - a.Min.Y) / 2.0f;
+                bExtent = (b.Max.Y - b.Min.Y) / 2.0f;
+
+                float yOverlap = aExtent + bExtent - Math.Abs(n.Y);
+
+                if(yOverlap > 0.0f) {
+                    if(xOverlap < yOverlap) {
+                        if(n.X < 0.0f) {
+                            n.X = -1.0f;
+                            n.Y =  0.0f;
+                        } else {
+                            n.X =  1.0f;
+                            n.Y =  0.0f;
+                        }
+                        return new Overlap(true, n, xOverlap);
+                    } else {
+                        if (n.Y < 0.0f) {
+                            n.X =  0.0f;
+                            n.Y = -1.0f;
+                        }
+                        else {
+                            n.X =  0.0f;
+                            n.Y =  1.0f;
+                        }
+                        return new Overlap(true, n, yOverlap);
+                    }
+                }
             }
 
-                return new Overlap(true, n, Vector2.Distance(a.Center, b.Center));
+            return Overlap.NoCollision();
         }
 
         public static Overlap IntersectCircle(Circle a, Circle b) {
-            float r = a.Radius + b.Radius;
+            // Difference between positions
+            var n = b.Position - a.Position;
+            
+            // radius
+            var r = a.Radius + b.Radius;
             r *= r;
 
-            float d = Vector2.DistanceSquared(a.Position, b.Position);
-            return new Overlap(r > d, Vector2.Normalize(a.Position-b.Position), (float)Math.Sqrt(d));
+            if (n.LengthSquared() > r) return Overlap.NoCollision();
+
+            // distance between circles
+            float d = n.Length();
+
+            if(d != 0.0f) {
+                // penetration depth
+                var depth = a.Radius+b.Radius - d;
+                // normalize n
+                var normal = n / d;
+                return new Overlap(true, normal, depth);
+            } else { // if circles are one same position try to move them apart
+                return new Overlap(true, new Vector2(1.0f, 0.0f), a.Radius);
+            }
         }
 
         public static Overlap IntersectCircleWithRamp(Circle a, Vector2[] points, float width) {
@@ -96,10 +150,10 @@ namespace ShapeFactory {
 
         private static Vector2 directionVector(Vector2 target) {
             Vector2[] compass = {
-                new Vector2( 0.0f, 1.0f),
-                new Vector2( 1.0f, 0.0f),
-                new Vector2( 0.0f,-1.0f),
-                new Vector2(-1.0f, 0.0f),
+                new Vector2( 0.0f, 1.0f), // down
+                new Vector2( 1.0f, 0.0f), // right
+                new Vector2( 0.0f,-1.0f), // up
+                new Vector2(-1.0f, 0.0f), // left
             };
 
             float max = 0.0f;

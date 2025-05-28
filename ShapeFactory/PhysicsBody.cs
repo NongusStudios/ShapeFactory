@@ -36,18 +36,13 @@ namespace ShapeFactory {
                     return Collision.IntersectCircle(Transform.ToCircle(), other.Transform.ToCircle());
                 }
                 else {
-                    var olap = Collision.IntersectAABB(Transform.ToAABB(), other.Transform.ToAABB());
-                    if (other is StaticBody) olap.Normal = -olap.Normal;
-                    return olap;
+                    return Collision.IntersectAABB(Transform.ToAABB(), other.Transform.ToAABB());
                 }
             }
 
             // Shape on other shape
             if (Collider == ShapeType.Circle && other.Collider == ShapeType.Rectangle) {
-                var olap = Collision.IntersectAABBwithCircle(other.Transform.ToAABB(), Transform.ToCircle());
-                if (other is RigidBody) olap.Normal = -olap.Normal; // I really should of taken the time to understand this math before using it
-                                                                    // because this is seriously getting out of hand
-                return olap;
+                return Collision.IntersectAABBwithCircle(other.Transform.ToAABB(), Transform.ToCircle());
             }
 
             return new Overlap();

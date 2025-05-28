@@ -25,29 +25,31 @@ namespace ShapeFactory {
             Restitution = restitution;
         }
 
+        private const float posCorrectionPercent = 0.1f;
+        private const float posCorrectionSlop = 0.05f;
+
         private void positionalCorrection(RigidBody o, Overlap overlap) {
-            const float percent = 0.1f; // usually 20% to 80% 
-            var correction = overlap.Depth / (invMass + o.invMass) * percent * overlap.Normal;
-            Transform.Position += invMass * correction;
-            o.Transform.Position -= o.invMass * correction;
+            var correction = Math.Max(overlap.Depth - posCorrectionSlop, 0.0f) / (invMass + o.invMass) * posCorrectionPercent * overlap.Normal;
+            Transform.Position -= invMass * correction;
+            o.Transform.Position += o.invMass * correction;
         }
 
         private void positionalCorrection(Overlap overlap) {
-            const float percent = 0.1f; // usually 20% to 80% 
-            var correction = overlap.Depth / invMass * percent * -overlap.Normal;
-            Transform.Position += invMass * correction;
+            var correction = Math.Max(overlap.Depth - posCorrectionSlop, 0.0f) / invMass * posCorrectionPercent * overlap.Normal;
+            Transform.Position -= invMass * correction;
         }
 
         public override void CollisionWith(PhysicsBody other, Overlap overlap) {
-            const float friction = 0.1f;
+            const float friction = 0.2f;
             AngularVelocity *= -1.0f;
 
             if (other is RigidBody) { // rigid on rigid
                 var o = (RigidBody)other;
+
                 // relative velocity
                 var rv = o.Velocity - Velocity;
 
-                var velAlongNormal = Vector2.Dot(rv, -overlap.Normal);
+                var velAlongNormal = Vector2.Dot(rv, overlap.Normal);
 
                 if (velAlongNormal > 0.0f) return;
 
@@ -58,31 +60,41 @@ namespace ShapeFactory {
                 float imSc = -(1.0f + rest) * velAlongNormal;
                 imSc /= invMass + o.invMass;
 
-                positionalCorrection(o, overlap);
-
                 // apply impulse
                 var impulse = imSc * overlap.Normal;
-                Velocity   += invMass * impulse;
-                o.Velocity -= o.invMass * impulse;
+
+                var massSum = Mass + o.Mass;
+                var massRatio = o.Mass / massSum;
+
+                Velocity   -= massRatio * impulse;
+
+                massRatio = Mass / massSum;
+                o.Velocity += massRatio * impulse;
+
+                positionalCorrection(o, overlap);
+
                 return;
             }
 
             { // collision with boundary or static body
                 var velAlongNormal = Vector2.Dot(Velocity, overlap.Normal);
 
-                if (other == null) {
-                    Transform.Position += overlap.Normal * overlap.Depth;
-                } else {
-                    positionalCorrection(overlap);
-                }
-                float imSc = -1.5f * velAlongNormal;
+                float imSc = -(1.0f + Restitution) * velAlongNormal;
                 imSc /= invMass;
 
                 var impulse = imSc * overlap.Normal;
                 Velocity += invMass * impulse;
 
+                if (other == null) {
+                    Transform.Position += overlap.Normal * overlap.Depth;
+                    overlap.Normal.Y *= -1;
+                }
+                else {
+                    positionalCorrection(overlap);
+                }
+
                 // apply friction when on ground
-                if (overlap.Normal.Y < 0.0f) {
+                if (overlap.Normal.Y > 0.0f) {
                     Velocity = M.Lerp(Velocity, Vector2.Zero, friction);
                 }
 
