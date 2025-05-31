@@ -9,17 +9,17 @@
   },
   "spawnB": {
     "$type": 2,
-    "PosX": 520,
-    "PosY": 27,
-    "AddedSpawnVelX": -70,
-    "AddedSpawnVelY": 0,
+    "PosX": 514,
+    "PosY": 22,
+    "AddedSpawnVelX": -10,
+    "AddedSpawnVelY": -20,
     "Rotation": 180
   },
   "belt": {
     "$type": 1,
     "PosX": 65,
     "PosY": 80,
-    "Speed": 60
+    "Speed": 30
   },
   "r1": {
     "$type": 6,
@@ -194,28 +194,8 @@
       },
       {
         "IsEmpty": false,
-        "X": 352,
-        "Y": 137
-      },
-      {
-        "IsEmpty": false,
-        "X": 337,
-        "Y": 146
-      },
-      {
-        "IsEmpty": false,
-        "X": 320,
-        "Y": 162
-      },
-      {
-        "IsEmpty": false,
-        "X": 309,
-        "Y": 174
-      },
-      {
-        "IsEmpty": false,
-        "X": 292,
-        "Y": 176
+        "X": 300,
+        "Y": 161
       }
     ]
   },
@@ -224,78 +204,66 @@
     "Points": [
       {
         "IsEmpty": false,
-        "X": 295,
-        "Y": 385
+        "X": 227,
+        "Y": 280
       },
       {
         "IsEmpty": false,
-        "X": 278,
-        "Y": 347
+        "X": 267,
+        "Y": 230
       },
       {
         "IsEmpty": false,
-        "X": 265,
-        "Y": 315
+        "X": 292,
+        "Y": 284
       },
       {
         "IsEmpty": false,
-        "X": 245,
-        "Y": 336
-      },
-      {
-        "IsEmpty": false,
-        "X": 230,
-        "Y": 353
-      },
-      {
-        "IsEmpty": false,
-        "X": 209,
-        "Y": 368
-      },
-      {
-        "IsEmpty": false,
-        "X": 191,
-        "Y": 377
-      },
-      {
-        "IsEmpty": false,
-        "X": 159,
-        "Y": 382
-      },
-      {
-        "IsEmpty": false,
-        "X": 129,
-        "Y": 386
-      },
-      {
-        "IsEmpty": false,
-        "X": 88,
-        "Y": 385
-      },
-      {
-        "IsEmpty": false,
-        "X": 60,
-        "Y": 384
+        "X": 227,
+        "Y": 280
       }
     ]
   },
   "tA": {
     "$type": 5,
-    "PosX": 250,
-    "PosY": 15,
-    "Rotation": 180
+    "PosX": 278,
+    "PosY": 36
   },
   "tB": {
     "$type": 5,
-    "PosX": 30,
-    "PosY": 375,
-    "Rotation": 0
+    "PosX": 32,
+    "PosY": 368
   },
   "punter": {
     "$type": 3,
-    "PosX": 316,
-    "PosY": 516,
+    "PosX": 374,
+    "PosY": 519,
     "AddedVelX": -100,
-    "AddedVelY": -500
+    "AddedVelY": -2200
+  },
+  "r6": {
+    "$type": 6,
+    "Points": [
+      {
+        "IsEmpty": false,
+        "X": 64,
+        "Y": 386
+      },
+      {
+        "IsEmpty": false,
+        "X": 202,
+        "Y": 366
+      },
+      {
+        "IsEmpty": false,
+        "X": 271,
+        "Y": 369
+      },
+      {
+        "IsEmpty": false,
+        "X": 303,
+        "Y": 398
+      }
+    ]
   }
 }

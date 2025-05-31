@@ -147,8 +147,9 @@
     <None Include="Resources\anomalous.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\teleporter2.png" />
+    <None Include="Resources\teleporter1.png" />
     <None Include="Resources\belt.bmp" />
-    <Content Include="Resources\belt.png" />
     <None Include="Resources\belt1.png" />
     <None Include="Resources\belt2.png" />
     <Content Include="Resources\elevator.png" />
@@ -157,7 +158,6 @@
     <Content Include="Resources\pipe.png" />
     <Content Include="Resources\punter.png" />
     <Content Include="Resources\spawn_pipe.png" />
-    <Content Include="Resources\teleporter.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Layouts\" />

@@ -153,9 +153,19 @@ namespace ShapeFactory.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap teleporter {
+        internal static System.Drawing.Bitmap teleporter1 {
             get {
-                object obj = ResourceManager.GetObject("teleporter", resourceCulture);
+                object obj = ResourceManager.GetObject("teleporter1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap teleporter2 {
+            get {
+                object obj = ResourceManager.GetObject("teleporter2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

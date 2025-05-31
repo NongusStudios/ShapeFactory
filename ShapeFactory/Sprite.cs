@@ -55,10 +55,7 @@ namespace ShapeFactory {
             if(elapsed >= Interval) {
                 elapsed = 0.0;
 
-                currentFrame++;
-                if(currentFrame >= Frames.Count) {
-                    currentFrame = 0;
-                }
+                currentFrame = (currentFrame + 1) % Frames.Count;
             }
         }
 

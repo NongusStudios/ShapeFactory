@@ -141,11 +141,46 @@ namespace ShapeFactory {
         }
 
         public static Overlap IntersectCircleWithRamp(Circle a, Vector2[] points, float width) {
-            return new Overlap();
-        }
+            if (points.Length < 2) return Overlap.NoCollision();
+            var bestOverlap = new Overlap(false, Vector2.Zero, 0.0f);
 
-        public static Overlap IntersectAABBWithRamp(AABB a, Vector2[] points, float width) {
-            return new Overlap();
+            // combined radius
+            var r = a.Radius + width / 2.0f;
+
+            for (var i = 0; i < points.Length - 1; i++) {
+                var start = points[i];
+                var end = points[i + 1];
+
+                var segmentVec = end - start;
+                var segmentLen = Math.Abs(segmentVec.Length());
+
+                // Skip segments less than a pixel long
+                if (segmentLen < 1.0f) continue;
+
+                var segmentDir = Vector2.Normalize(segmentVec);
+                var circleVec = a.Position - start;
+
+                // project circle center onto segment
+                var projection = Vector2.Dot(circleVec, segmentDir);
+                projection = Math.Max(0.0f, Math.Min(segmentLen, projection)); // clamp to segment 
+
+                var closestPoint = start + segmentDir * projection;
+                var penetration = closestPoint - a.Position;
+                var d = penetration.Length();
+
+                if(d < r) {
+                    var depth = r - d;
+                    var normal = Vector2.Normalize(penetration);
+
+                    if(!bestOverlap.Collision || depth > bestOverlap.Depth) {
+                        bestOverlap.Collision = true;
+                        bestOverlap.Normal = normal;
+                        bestOverlap.Depth = depth;
+                    }
+                }
+            }
+
+            return bestOverlap;
         }
 
         private static Vector2 directionVector(Vector2 target) {
@@ -178,7 +213,7 @@ namespace ShapeFactory {
             
             var aabb_half_extent = a.Max - a.Min;
             aabb_half_extent /= 2.0f;
-            var clamped = new Vector2(M.Clamp(diff.X, -aabb_half_extent.X, aabb_half_extent.X), M.Clamp(diff.Y, -aabb_half_extent.Y, aabb_half_extent.Y));
+            var clamped = new Vector2(UtilMath.Clamp(diff.X, -aabb_half_extent.X, aabb_half_extent.X), UtilMath.Clamp(diff.Y, -aabb_half_extent.Y, aabb_half_extent.Y));
             var closest = aabb_center + clamped;
 
             diff = closest - center;
@@ -186,12 +221,16 @@ namespace ShapeFactory {
             return new Overlap(diff.LengthSquared() < b.Radius*b.Radius, directionVector(diff), Vector2.Distance(center, aabb_center));
         }
 
-        public static bool PointInRect(Vector2 point, AABB rect) {
+        public static bool PointInAABB(Vector2 point, AABB rect) {
             if (point.X > rect.Min.X && point.X < rect.Max.X &&
                point.Y > rect.Min.Y && point.Y < rect.Max.Y) {
                 return true;
             }
             return false;
+        }
+
+        public static bool PointInRamp(Vector2 point, Vector2[] points, float width) {
+            return IntersectCircleWithRamp(new Circle(point, 0.0f), points, width).Collision;
         }
     }
 }

@@ -145,7 +145,10 @@
   <data name="spawn_pipe" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\spawn_pipe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="teleporter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\teleporter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="teleporter1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\teleporter1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="teleporter2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\teleporter2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

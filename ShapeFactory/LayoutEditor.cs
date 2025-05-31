@@ -85,8 +85,8 @@ namespace ShapeFactory {
                     MessageBox.Show("Must input a unique valid name!");
                     return;
                 }
-                layout.Add(name + "A", new StaticItems.TeleporterProperties(currentMousePosition, 0.0f));
-                layout.Add(name + "B", new StaticItems.TeleporterProperties(currentMousePosition + new Vector2((float)Properties.Resources.teleporter.Width / 4.0f, 0.0f), 0.0f));
+                layout.Add(name + "A", new StaticItems.TeleporterProperties(currentMousePosition, 0));
+                layout.Add(name + "B", new StaticItems.TeleporterProperties(currentMousePosition + new Vector2((float)Properties.Resources.teleporter1.Width / 4.0f, 0.0f), 0));
             }
             else if (type == typeof(Elevator).ToString()) {
                 layout.Add(name, new StaticItems.ElevatorProperties(currentMousePosition, true, 40.0f, 5.0));
@@ -105,7 +105,7 @@ namespace ShapeFactory {
             }
             if (layout.ContainsKey(name + "A") && layout[name + "A"] is TeleporterProperties) {
                 var (tp1, tp2) = ((TeleporterProperties)layout[name + "A"], (TeleporterProperties)layout[name + "B"]);
-                var (t1, t2) = Teleporter.CreateTeleporters(r, p, tp1.Position, tp1.Rotation, tp2.Position, tp2.Rotation);
+                var (t1, t2) = Teleporter.CreateTeleporters(r, p, tp1.Position, tp2.Position);
                 layoutPreview.Add(name + "A", t1);
                 layoutPreview.Add(name + "B", t2);
                 return;
@@ -162,9 +162,15 @@ namespace ShapeFactory {
         private bool selectMousedOverItem() {
             foreach (var entry in layoutPreview) {
                 var (name, item) = (entry.Key, entry.Value);
-                if (!(item is Ramp) && Collision.PointInRect(currentMousePosition, item.ShapeInstance.Transform.ToAABB())) {
+                if (!(item is Ramp) && Collision.PointInAABB(currentMousePosition, item.ShapeInstance.Transform.ToAABB())) {
                     listItems.SelectedItem = name + ": " + item.GetType().ToString();
                     return true;
+                } else if (item is Ramp) {
+                    var r = (Ramp)item;
+                    if(Collision.PointInRamp(currentMousePosition, r.LineInstance.Points.ToArray(), r.LineInstance.Width)) {
+                        listItems.SelectedItem = name + ": " + item.GetType().ToString();
+                        return true;
+                    }
                 }
             }
             return false;
@@ -321,126 +327,6 @@ namespace ShapeFactory {
         private void properties_Leave(object sender, EventArgs e) {
             updatePreview();
         }
-
-        /*private string serializeProperty(StaticItemProperties props) {
-            var type = props.GetPropertiesType();
-            if (type == "Belt") {
-                return JsonSerializer.Serialize((BeltProperties)props);
-            }
-            else if (type == "Pipe") {
-                return JsonSerializer.Serialize((PipeProperties)props);
-            }
-            else if (type == "Punter") {
-                return JsonSerializer.Serialize((PunterProperties)props);
-
-            }
-            else if (type == "Teleporter") {
-                return JsonSerializer.Serialize((TeleporterProperties)props);
-            }
-            else if (type == "Elevator") {
-                return JsonSerializer.Serialize((ElevatorProperties)props);
-            }
-            return "";
-        }*/
-
-        /*private void spawnItem(string name, string type) {
-            if (type == "Belt") {
-                layoutPreview.Add(name, new StaticItems.Belt(r, p, currentMousePosition, 0.0f));
-
-            }
-            else if (type == "Pipe") {
-                layoutPreview.Add(name, new StaticItems.Pipe(r, p, currentMousePosition, 0.0f));
-
-            }
-            else if (type == "Punter") {
-                layoutPreview.Add(name, new StaticItems.Punter(r, p, currentMousePosition, new Vector2()));
-
-            }
-            else if (type == "Teleporter") {
-                if (layoutPreview.ContainsKey(name + "A") || layoutPreview.ContainsKey(name + "B")) {
-                    MessageBox.Show("Must input a unique valid name!");
-                    return;
-                }
-
-                var (teleporterA, teleporterB) = StaticItems.Teleporter.CreateTeleporters(r, p,
-                    currentMousePosition, 0.0f, currentMousePosition + new Vector2((float)Properties.Resources.teleporter.Width / 2.0f, 0.0f), 0.0f
-                );
-                layoutPreview.Add(name + "A", teleporterA);
-                layoutPreview.Add(name + "B", teleporterB);
-
-            }
-            else if (type == "Elevator") {
-                layoutPreview.Add(name, new StaticItems.Elevator(r, p, currentMousePosition, true, 40.0f, 5.0));
-
-            }
-            else {
-                MessageBox.Show("Must input a valid item to be placed!");
-            }
-        }*/
-
-        /*private void updateItem(string name) {
-            if (!layout.ContainsKey(name)) {
-                MessageBox.Show("Must input a valid item to be placed!");
-            }
-
-            if (props.GetPropertiesType() == "Belt") {
-                var layoutProps = (BeltProperties)layout[name];
-                var belt = (Belt)layoutPreview[name];
-                belt.ShapeInstance.Transform.Position = layoutProps.Position;
-                belt.Speed = layoutProps.Speed;
-
-            }
-            else if (props.GetPropertiesType() == "Pipe") {
-                var layoutProps = (PipeProperties)layout[name];
-                layoutProps.Position = p.Position;
-                layoutProps.Rotation = p.Rotation;
-
-                var pipe = (Pipe)layoutPreview[name];
-                pipe.ShapeInstance.Transform.Position = layoutProps.Position;
-                pipe.ShapeInstance.Transform.Rotation = layoutProps.Rotation;
-
-            }
-            else if (props.GetPropertiesType() == "Punter") {
-                var p = (PunterProperties)props;
-                var layoutProps = (PunterProperties)layout[name];
-                layoutProps.Position = p.Position;
-                layoutProps.AddedVelocity = p.AddedVelocity;
-
-                var punter = (Punter)layoutPreview[name];
-                punter.ShapeInstance.Transform.Position = layoutProps.Position;
-                punter.AddedVelocity = layoutProps.AddedVelocity;
-
-            }
-            else if (props.GetPropertiesType() == "Teleporter") {
-                var p = (TeleporterProperties)props;
-                var layoutProps = (TeleporterProperties)layout[name];
-                layoutProps.Position = p.Position;
-                layoutProps.Rotation = p.Rotation;
-
-                var tele = (Teleporter)layoutPreview[name];
-                tele.ShapeInstance.Transform.Position = layoutProps.Position;
-                tele.ShapeInstance.Transform.Rotation = layoutProps.Rotation;
-
-            }
-            else if (props.GetPropertiesType() == "Elevator") {
-                var p = (ElevatorProperties)props;
-                var layoutProps = (ElevatorProperties)layout[name];
-                layoutProps.Position = p.Position;
-                layoutProps.PlatformIsRight = p.PlatformIsRight;
-                layoutProps.Speed = p.Speed;
-                layoutProps.Interval = p.Interval;
-
-                var ele = (Elevator)layoutPreview[name];
-                ele.ShapeInstance.QueueFree();
-                ele.Platform.QueueFree();
-                ele.PhysicsInstance.QueueFree();
-                ele.PlatformPhysics.QueueFree();
-
-                layoutPreview[name] = new StaticItems.Elevator(r, this.p, layoutProps.Position, layoutProps.PlatformIsRight, layoutProps.Speed, layoutProps.Interval);
-            }
-
-            canvas.Invalidate();
-        }*/
     }
 
     [JsonDerivedType(typeof(StaticItemProperties), typeDiscriminator: 0)]

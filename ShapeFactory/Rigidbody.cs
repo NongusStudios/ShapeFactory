@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShapeFactory.StaticItems;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -9,24 +10,28 @@ namespace ShapeFactory {
     public class RigidBody : PhysicsBody {
         public Vector2 Velocity;
         public float AngularVelocity;
+        public Action<PhysicsBody, Overlap> OnCollision = (o, ov) => { };
 
         private float invMass;
         public float Mass {
             get { return 1.0f / invMass; }
             set { invMass = 1.0f / value; }
         }
+        public float Friction;
         public float Restitution;
 
-        public RigidBody(ShapeType col, Transform2D transform, float mass, float restitution, int layer): base(col, transform, layer) {
+        // restitution controls bounce, friction is 0-1
+        public RigidBody(ShapeType col, Transform2D transform, float mass, float restitution, float friction, int layer): base(col, transform, layer) {
             Velocity = Vector2.Zero;
             AngularVelocity = 0.0f;
             Mass = mass;
             invMass = 1.0f / mass;
             Restitution = restitution;
+            Friction = friction;
         }
 
-        private const float posCorrectionPercent = 0.1f;
-        private const float posCorrectionSlop = 0.05f;
+        private const float posCorrectionPercent = 0.05f;
+        private const float posCorrectionSlop = 0.1f;
 
         private void positionalCorrection(RigidBody o, Overlap overlap) {
             var correction = Math.Max(overlap.Depth - posCorrectionSlop, 0.0f) / (invMass + o.invMass) * posCorrectionPercent * overlap.Normal;
@@ -39,8 +44,9 @@ namespace ShapeFactory {
             Transform.Position -= invMass * correction;
         }
 
-        public override void CollisionWith(PhysicsBody other, Overlap overlap) {
-            const float friction = 0.2f;
+        public override void CollisionWith(PhysicsBody other, Overlap overlap, double deltaTime) {
+            var dt = (float)deltaTime;
+            
             AngularVelocity *= -1.0f;
 
             if (other is RigidBody) { // rigid on rigid
@@ -54,7 +60,7 @@ namespace ShapeFactory {
                 if (velAlongNormal > 0.0f) return;
 
                 // calculate restitution
-                float rest = Math.Min(Restitution, o.Restitution);
+                float rest = Math.Max(Restitution, o.Restitution);
 
                 // impulse scalar
                 float imSc = -(1.0f + rest) * velAlongNormal;
@@ -73,11 +79,18 @@ namespace ShapeFactory {
 
                 positionalCorrection(o, overlap);
 
+                if(Collider == ShapeType.Triangle) {
+                    OnCollision(other, overlap);
+                } else if(o.Collider == ShapeType.Triangle) {
+                    o.OnCollision(this, overlap);
+                }
+
                 return;
             }
 
             { // collision with boundary or static body
                 var velAlongNormal = Vector2.Dot(Velocity, overlap.Normal);
+                if (other is RampBody && velAlongNormal < 0.0f) return;
 
                 float imSc = -(1.0f + Restitution) * velAlongNormal;
                 imSc /= invMass;
@@ -87,15 +100,14 @@ namespace ShapeFactory {
 
                 if (other == null) {
                     Transform.Position += overlap.Normal * overlap.Depth;
-                    overlap.Normal.Y *= -1;
-                }
-                else {
+                    overlap.Normal *= -1.0f;
+                } else {
                     positionalCorrection(overlap);
                 }
 
                 // apply friction when on ground
                 if (overlap.Normal.Y > 0.0f) {
-                    Velocity = M.Lerp(Velocity, Vector2.Zero, friction);
+                    Velocity.X -= Velocity.X * Friction * overlap.Normal.Y * (dt * 4.0f);
                 }
 
                 if (other is StaticBody) {
@@ -105,7 +117,7 @@ namespace ShapeFactory {
             }
         }
 
-        public override void CollideWithBoundaries() {
+        public override void CollideWithBoundaries(double deltaTime) {
             var aabb = Transform.ToAABB();
             var overlap = new Overlap();
 
@@ -123,22 +135,22 @@ namespace ShapeFactory {
                 overlap.Collision = true;
                 overlap.Normal.Y = 1.0f;
                 overlap.Depth += 0.0f - aabb.Min.Y;
-            } else if (aabb.Max.Y >= Global.CanvasSizeY) {
+            } /*else if (aabb.Max.Y >= Global.CanvasSizeY) {
                 overlap.Collision = true;
                 overlap.Normal.Y = -1.0f;
                 overlap.Depth += aabb.Max.Y - Global.CanvasSizeY;
-            }
+            }*/
 
             if (overlap.Collision) {
-                CollisionWith(null, overlap);
+                CollisionWith(null, overlap, deltaTime);
             }
         }
 
         public override void PhysicsStep(double deltaTime) {
             var dt = (float)deltaTime;
 
-            Velocity.X = M.Clamp(Velocity.X, -Physics.TERMINAL_VELOCITY, Physics.TERMINAL_VELOCITY);
-            Velocity.Y = M.Clamp(Velocity.Y, -Physics.TERMINAL_VELOCITY, Physics.TERMINAL_VELOCITY);
+            Velocity.X = UtilMath.Clamp(Velocity.X, -Physics.TERMINAL_VELOCITY, Physics.TERMINAL_VELOCITY);
+            Velocity.Y = UtilMath.Clamp(Velocity.Y, -Physics.TERMINAL_VELOCITY, Physics.TERMINAL_VELOCITY);
 
             Velocity.Y += Physics.GRAVITY * Physics.GRAVITY * dt;
             Transform.Position += Velocity * dt;

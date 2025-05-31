@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShapeFactory.Items;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,8 +10,8 @@ using System.Xml.Linq;
 
 namespace ShapeFactory {
     public class Factory {
-        
 
+        public List<AnomalousTriangle> AnomTriangles; // reference for triangles to access each other
         private List<Item> items;
         private List<StaticItem> staticItems;
         private List<int> freeQueue;
@@ -19,6 +20,7 @@ namespace ShapeFactory {
             items = new List<Item>();
             staticItems = new List<StaticItem>();
             freeQueue = new List<int>();
+            AnomTriangles = new List<AnomalousTriangle>();
         }
 
         private void freeItems() {
@@ -30,6 +32,7 @@ namespace ShapeFactory {
         }
 
         public void Clear() {
+            AnomTriangles.Clear();
             items.Clear();
             staticItems.Clear();
             freeQueue.Clear();
@@ -66,8 +69,6 @@ namespace ShapeFactory {
             }
 
             freeItems();
-
-            
         }
     }
 }

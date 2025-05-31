@@ -21,7 +21,7 @@ namespace ShapeFactory.Items {
         public LeadBall(Renderer r, Physics p, Vector2 position) : base(
             r.AddDrawable(new Shape(ShapeType.Circle, 
                 new Transform2D(position, new Vector2(20.0f, 20.0f)), colours[variantIdx])
-            ), p, ShapeType.Circle, masses[variantIdx], 0.4f
+            ), p, ShapeType.Circle, masses[variantIdx], 0.2f, 0.2f
         ) {
             variantIdx = (variantIdx + 1) % 2;
         }

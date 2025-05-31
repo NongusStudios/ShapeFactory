@@ -15,6 +15,8 @@ namespace ShapeFactory.StaticItems {
         private double elapsedTime;
         private int direction;
         private float nextPos;
+        private const float leaveSpeed = 10.0f;
+        private float leaveDir; // direction
 
         public Elevator(Renderer r, Physics p, Vector2 position, bool platformIsRight, float speed, double interval) : base(r.AddDrawable(new Sprite(
             ShapeType.Rectangle, new Transform2D(position, new Vector2((float)(Properties.Resources.elevator.Width/2), (float) (Properties.Resources.elevator.Height/2))),
@@ -31,11 +33,19 @@ namespace ShapeFactory.StaticItems {
                 new Bitmap[] {Properties.Resources.elevator_pad_0, Properties.Resources.elevator_pad_1}
             ));
             PlatformPhysics = p.AddBody(new StaticBody(ShapeType.Rectangle, Platform.Transform, 0));
+            PlatformPhysics.OnCollision = (body, o) => {
+                if(PlatformPhysics.Transform.Position.Y == topPos() && body is RigidBody) {
+                    var b = (RigidBody)body;
+                    b.Velocity.X += leaveDir * leaveSpeed;
+                }
+                body.Transform.Position.Y = Platform.Transform.Position.Y - body.Transform.Size.Y / 1.5f;
+            };
 
             Speed = speed;
             Interval = interval;
             elapsedTime = 0.0f;
             direction = -1;
+            leaveDir = (platformIsRight) ? 1.0f : -1.0f;
             nextPos = topPos();
         }
 
@@ -52,13 +62,14 @@ namespace ShapeFactory.StaticItems {
                 Platform.SetCurrentFrame(1);
                 var dest = (direction > 0) ? bottomPos() : topPos();
                 Platform.Transform.Position.Y += Speed * (float)deltaTime * (float)direction;
-                Platform.Transform.Position.Y = M.Clamp(Platform.Transform.Position.Y, topPos(), bottomPos());
+                Platform.Transform.Position.Y = UtilMath.Clamp(Platform.Transform.Position.Y, topPos(), bottomPos());
                 PlatformPhysics.Transform = Platform.Transform;
 
-                if (Math.Abs(Platform.Transform.Position.Y - nextPos) < 0.1f) { // Reached top or bottom
+                if (Platform.Transform.Position.Y == nextPos) { // Reached top or bottom
                     Platform.SetCurrentFrame(0);
                     elapsedTime = 0.0f;
                     direction = -direction;
+                    leaveDir = -leaveDir;
 
                     if (nextPos == topPos()) nextPos = bottomPos();
                     else nextPos = topPos();

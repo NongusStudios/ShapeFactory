@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Numerics;
@@ -38,7 +39,7 @@ namespace ShapeFactory {
         }
     }
 
-    public class M {
+    public class UtilMath {
         public static float Lerp(float firstFloat, float secondFloat, float by) {
             return firstFloat * (1 - by) + secondFloat * by;
         }
@@ -50,6 +51,10 @@ namespace ShapeFactory {
             if (v > max) return max;
             if (v < min) return min;
             return v;
+        }
+
+        public static float Rad2Deg(float rad) {
+            return rad * 180.0f / (float)Math.PI;
         }
     }
 }

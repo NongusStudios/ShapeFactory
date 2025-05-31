@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ShapeFactory {
     public class Physics {
         public static float GRAVITY = 9.8f;
-        public static float TERMINAL_VELOCITY = 220.0f;
+        public static float TERMINAL_VELOCITY = 330.0f;
 
         private List<PhysicsBody> bodies;
         private List<int> queueFree;
@@ -45,13 +45,13 @@ namespace ShapeFactory {
                         collidedBodies.Contains((i, j))) continue;
                     var overlap = body.OverlapWith(bodies[j]);
                     if (overlap.Collision) {
-                        body.CollisionWith(bodies[j], overlap);
+                        body.CollisionWith(bodies[j], overlap, deltaTime);
                         // keeps track of what bodies have already collided and don't need to be checked again
                         collidedBodies.Add((j, i));
                     }
                 }
                 // check with wall collision
-                body.CollideWithBoundaries();
+                body.CollideWithBoundaries(deltaTime);
             }
 
             collidedBodies.Clear();

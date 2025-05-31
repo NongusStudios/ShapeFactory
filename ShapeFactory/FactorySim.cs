@@ -34,8 +34,9 @@ namespace ShapeFactory {
             random = new Random();
 
             cbShape.Items.Add(typeof(LeadBall).ToString());
-            cbShape.Items.Add(typeof(AnomalousTriangle).ToString());
             cbShape.Items.Add(typeof(PlutoniumCylinder).ToString());
+            cbShape.Items.Add(typeof(AnomalousTriangle).ToString());
+            
             cbShape.SelectedIndex = 0;
 
             if (!Directory.Exists(Global.LAYOUT_FOLDER)) Directory.CreateDirectory(Global.LAYOUT_FOLDER);
@@ -103,7 +104,7 @@ namespace ShapeFactory {
                 if(props is TeleporterProperties && entry.Key.Last() == 'A') {
                     var itemName = entry.Key.Substring(0, entry.Key.Length - 1);
                     var (tp1, tp2) = ((TeleporterProperties)layout[itemName + "A"], (TeleporterProperties)layout[itemName + "B"]);
-                    var (t1, t2) = Teleporter.CreateTeleporters(renderer, physics, tp1.Position, tp1.Rotation, tp2.Position, tp2.Rotation);
+                    var (t1, t2) = Teleporter.CreateTeleporters(renderer, physics, tp1.Position, tp2.Position);
                     factory.AddStaticItem(t1);
                     factory.AddStaticItem(t2);
                     continue;
@@ -140,9 +141,9 @@ namespace ShapeFactory {
                 lb.PhysicsInstance.Velocity = spawnPoints[selectedSpawn].Item2;
                 factory.AddItem(lb);
             } else if (selectedItem == typeof(AnomalousTriangle).ToString()) {
-                var at = new AnomalousTriangle(renderer, physics, spawnPoints[selectedSpawn].Item1);
+                var at = new AnomalousTriangle(renderer, physics, spawnPoints[selectedSpawn].Item1, factory.AnomTriangles);
                 at.PhysicsInstance.Velocity = spawnPoints[selectedSpawn].Item2;
-                at.PhysicsInstance.AngularVelocity = (float)(random.NextDouble() * 2.0 - 1.0) * spawnPoints[selectedSpawn].Item2.Length();
+                //at.PhysicsInstance.AngularVelocity = (float)(random.NextDouble() * 2.0 - 1.0) * spawnPoints[selectedSpawn].Item2.Length();
                 factory.AddItem(at);
             } else if (selectedItem == typeof(PlutoniumCylinder).ToString()) {
                 var pc = new PlutoniumCylinder(renderer, physics, spawnPoints[selectedSpawn].Item1);
