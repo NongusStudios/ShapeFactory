@@ -38,6 +38,7 @@
             this.cbLoad = new System.Windows.Forms.ComboBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnPlaceRamp = new System.Windows.Forms.Button();
+            this.checkbox_BottomBorder = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -180,11 +181,22 @@
             this.btnPlaceRamp.UseVisualStyleBackColor = true;
             this.btnPlaceRamp.Click += new System.EventHandler(this.btnPlaceRamp_Click);
             // 
+            // checkbox_BottomBorder
+            // 
+            this.checkbox_BottomBorder.AutoSize = true;
+            this.checkbox_BottomBorder.Location = new System.Drawing.Point(174, 551);
+            this.checkbox_BottomBorder.Name = "checkbox_BottomBorder";
+            this.checkbox_BottomBorder.Size = new System.Drawing.Size(93, 17);
+            this.checkbox_BottomBorder.TabIndex = 18;
+            this.checkbox_BottomBorder.Text = "Bottom Border";
+            this.checkbox_BottomBorder.UseVisualStyleBackColor = true;
+            // 
             // LayoutEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 577);
+            this.Controls.Add(this.checkbox_BottomBorder);
             this.Controls.Add(this.btnPlaceRamp);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.cbLoad);
@@ -225,5 +237,6 @@
         private System.Windows.Forms.ComboBox cbLoad;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnPlaceRamp;
+        private System.Windows.Forms.CheckBox checkbox_BottomBorder;
     }
 }

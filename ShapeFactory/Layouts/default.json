@@ -1,269 +1,272 @@
 {
-  "spawnA": {
-    "$type": 2,
-    "PosX": 29,
-    "PosY": 9,
-    "AddedSpawnVelX": 0,
-    "AddedSpawnVelY": 50,
-    "Rotation": 90
-  },
-  "spawnB": {
-    "$type": 2,
-    "PosX": 514,
-    "PosY": 22,
-    "AddedSpawnVelX": -10,
-    "AddedSpawnVelY": -20,
-    "Rotation": 180
-  },
-  "belt": {
-    "$type": 1,
-    "PosX": 65,
-    "PosY": 80,
-    "Speed": 30
-  },
-  "r1": {
-    "$type": 6,
-    "Points": [
-      {
-        "IsEmpty": false,
-        "X": 516,
-        "Y": 57
-      },
-      {
-        "IsEmpty": false,
-        "X": 515,
-        "Y": 134
-      },
-      {
-        "IsEmpty": false,
-        "X": 515,
-        "Y": 158
-      },
-      {
-        "IsEmpty": false,
-        "X": 510,
-        "Y": 185
-      },
-      {
-        "IsEmpty": false,
-        "X": 506,
-        "Y": 200
-      },
-      {
-        "IsEmpty": false,
-        "X": 496,
-        "Y": 223
-      },
-      {
-        "IsEmpty": false,
-        "X": 486,
-        "Y": 235
-      },
-      {
-        "IsEmpty": false,
-        "X": 471,
-        "Y": 244
-      },
-      {
-        "IsEmpty": false,
-        "X": 454,
-        "Y": 245
-      },
-      {
-        "IsEmpty": false,
-        "X": 434,
-        "Y": 244
-      }
-    ]
-  },
-  "elevator": {
-    "$type": 4,
-    "PosX": 379,
-    "PosY": 190,
-    "PlatformIsRight": true,
-    "Speed": 40,
-    "Interval": 5
-  },
-  "r2": {
-    "$type": 6,
-    "Points": [
-      {
-        "IsEmpty": false,
-        "X": 378,
-        "Y": 267
-      },
-      {
-        "IsEmpty": false,
-        "X": 379,
-        "Y": 303
-      },
-      {
-        "IsEmpty": false,
-        "X": 381,
-        "Y": 337
-      },
-      {
-        "IsEmpty": false,
-        "X": 381,
-        "Y": 376
-      },
-      {
-        "IsEmpty": false,
-        "X": 385,
-        "Y": 406
-      },
-      {
-        "IsEmpty": false,
-        "X": 393,
-        "Y": 433
-      },
-      {
-        "IsEmpty": false,
-        "X": 410,
-        "Y": 460
-      },
-      {
-        "IsEmpty": false,
-        "X": 428,
-        "Y": 470
-      },
-      {
-        "IsEmpty": false,
-        "X": 445,
-        "Y": 487
-      },
-      {
-        "IsEmpty": false,
-        "X": 452,
-        "Y": 501
-      },
-      {
-        "IsEmpty": false,
-        "X": 455,
-        "Y": 513
-      }
-    ]
-  },
-  "r3": {
-    "$type": 6,
-    "Points": [
-      {
-        "IsEmpty": false,
-        "X": 122,
-        "Y": 102
-      },
-      {
-        "IsEmpty": false,
-        "X": 158,
-        "Y": 115
-      },
-      {
-        "IsEmpty": false,
-        "X": 172,
-        "Y": 122
-      },
-      {
-        "IsEmpty": false,
-        "X": 194,
-        "Y": 133
-      },
-      {
-        "IsEmpty": false,
-        "X": 210,
-        "Y": 144
-      },
-      {
-        "IsEmpty": false,
-        "X": 225,
-        "Y": 151
-      },
-      {
-        "IsEmpty": false,
-        "X": 244,
-        "Y": 159
-      }
-    ]
-  },
-  "r4": {
-    "$type": 6,
-    "Points": [
-      {
-        "IsEmpty": false,
-        "X": 371,
-        "Y": 128
-      },
-      {
-        "IsEmpty": false,
-        "X": 300,
-        "Y": 161
-      }
-    ]
-  },
-  "r5": {
-    "$type": 6,
-    "Points": [
-      {
-        "IsEmpty": false,
-        "X": 227,
-        "Y": 280
-      },
-      {
-        "IsEmpty": false,
-        "X": 267,
-        "Y": 230
-      },
-      {
-        "IsEmpty": false,
-        "X": 292,
-        "Y": 284
-      },
-      {
-        "IsEmpty": false,
-        "X": 227,
-        "Y": 280
-      }
-    ]
-  },
-  "tA": {
-    "$type": 5,
-    "PosX": 278,
-    "PosY": 36
-  },
-  "tB": {
-    "$type": 5,
-    "PosX": 32,
-    "PosY": 368
-  },
-  "punter": {
-    "$type": 3,
-    "PosX": 374,
-    "PosY": 519,
-    "AddedVelX": -100,
-    "AddedVelY": -2200
-  },
-  "r6": {
-    "$type": 6,
-    "Points": [
-      {
-        "IsEmpty": false,
-        "X": 64,
-        "Y": 386
-      },
-      {
-        "IsEmpty": false,
-        "X": 202,
-        "Y": 366
-      },
-      {
-        "IsEmpty": false,
-        "X": 271,
-        "Y": 369
-      },
-      {
-        "IsEmpty": false,
-        "X": 303,
-        "Y": 398
-      }
-    ]
+  "HasBottomBorder": false,
+  "Layout": {
+    "spawnA": {
+      "$type": 2,
+      "PosX": 29,
+      "PosY": 9,
+      "AddedSpawnVelX": 0,
+      "AddedSpawnVelY": 50,
+      "Rotation": 90
+    },
+    "spawnB": {
+      "$type": 2,
+      "PosX": 514,
+      "PosY": 22,
+      "AddedSpawnVelX": -10,
+      "AddedSpawnVelY": -20,
+      "Rotation": 180
+    },
+    "belt": {
+      "$type": 1,
+      "PosX": 65,
+      "PosY": 80,
+      "Speed": 30
+    },
+    "r1": {
+      "$type": 6,
+      "Points": [
+        {
+          "IsEmpty": false,
+          "X": 516,
+          "Y": 57
+        },
+        {
+          "IsEmpty": false,
+          "X": 515,
+          "Y": 134
+        },
+        {
+          "IsEmpty": false,
+          "X": 515,
+          "Y": 158
+        },
+        {
+          "IsEmpty": false,
+          "X": 510,
+          "Y": 185
+        },
+        {
+          "IsEmpty": false,
+          "X": 506,
+          "Y": 200
+        },
+        {
+          "IsEmpty": false,
+          "X": 496,
+          "Y": 223
+        },
+        {
+          "IsEmpty": false,
+          "X": 486,
+          "Y": 235
+        },
+        {
+          "IsEmpty": false,
+          "X": 471,
+          "Y": 244
+        },
+        {
+          "IsEmpty": false,
+          "X": 454,
+          "Y": 245
+        },
+        {
+          "IsEmpty": false,
+          "X": 434,
+          "Y": 244
+        }
+      ]
+    },
+    "elevator": {
+      "$type": 4,
+      "PosX": 379,
+      "PosY": 190,
+      "PlatformIsRight": true,
+      "Speed": 40,
+      "Interval": 5
+    },
+    "r2": {
+      "$type": 6,
+      "Points": [
+        {
+          "IsEmpty": false,
+          "X": 378,
+          "Y": 267
+        },
+        {
+          "IsEmpty": false,
+          "X": 379,
+          "Y": 303
+        },
+        {
+          "IsEmpty": false,
+          "X": 381,
+          "Y": 337
+        },
+        {
+          "IsEmpty": false,
+          "X": 381,
+          "Y": 376
+        },
+        {
+          "IsEmpty": false,
+          "X": 385,
+          "Y": 406
+        },
+        {
+          "IsEmpty": false,
+          "X": 393,
+          "Y": 433
+        },
+        {
+          "IsEmpty": false,
+          "X": 410,
+          "Y": 460
+        },
+        {
+          "IsEmpty": false,
+          "X": 428,
+          "Y": 470
+        },
+        {
+          "IsEmpty": false,
+          "X": 445,
+          "Y": 487
+        },
+        {
+          "IsEmpty": false,
+          "X": 452,
+          "Y": 501
+        },
+        {
+          "IsEmpty": false,
+          "X": 455,
+          "Y": 513
+        }
+      ]
+    },
+    "r3": {
+      "$type": 6,
+      "Points": [
+        {
+          "IsEmpty": false,
+          "X": 122,
+          "Y": 102
+        },
+        {
+          "IsEmpty": false,
+          "X": 158,
+          "Y": 115
+        },
+        {
+          "IsEmpty": false,
+          "X": 172,
+          "Y": 122
+        },
+        {
+          "IsEmpty": false,
+          "X": 194,
+          "Y": 133
+        },
+        {
+          "IsEmpty": false,
+          "X": 210,
+          "Y": 144
+        },
+        {
+          "IsEmpty": false,
+          "X": 225,
+          "Y": 151
+        },
+        {
+          "IsEmpty": false,
+          "X": 244,
+          "Y": 159
+        }
+      ]
+    },
+    "r4": {
+      "$type": 6,
+      "Points": [
+        {
+          "IsEmpty": false,
+          "X": 371,
+          "Y": 128
+        },
+        {
+          "IsEmpty": false,
+          "X": 300,
+          "Y": 161
+        }
+      ]
+    },
+    "r5": {
+      "$type": 6,
+      "Points": [
+        {
+          "IsEmpty": false,
+          "X": 227,
+          "Y": 280
+        },
+        {
+          "IsEmpty": false,
+          "X": 267,
+          "Y": 230
+        },
+        {
+          "IsEmpty": false,
+          "X": 292,
+          "Y": 284
+        },
+        {
+          "IsEmpty": false,
+          "X": 227,
+          "Y": 280
+        }
+      ]
+    },
+    "tA": {
+      "$type": 5,
+      "PosX": 278,
+      "PosY": 36
+    },
+    "tB": {
+      "$type": 5,
+      "PosX": 32,
+      "PosY": 368
+    },
+    "punter": {
+      "$type": 3,
+      "PosX": 374,
+      "PosY": 519,
+      "AddedVelX": -100,
+      "AddedVelY": -2200
+    },
+    "r6": {
+      "$type": 6,
+      "Points": [
+        {
+          "IsEmpty": false,
+          "X": 64,
+          "Y": 386
+        },
+        {
+          "IsEmpty": false,
+          "X": 202,
+          "Y": 366
+        },
+        {
+          "IsEmpty": false,
+          "X": 271,
+          "Y": 369
+        },
+        {
+          "IsEmpty": false,
+          "X": 303,
+          "Y": 398
+        }
+      ]
+    }
   }
 }

@@ -10,7 +10,6 @@ using System.Xml.Linq;
 
 namespace ShapeFactory {
     public class Factory {
-
         public List<AnomalousTriangle> AnomTriangles; // reference for triangles to access each other
         private List<Item> items;
         private List<StaticItem> staticItems;

@@ -20,7 +20,11 @@ namespace ShapeFactory.StaticItems
             PhysicsInstance.OnCollision = (other, overlap) => {
                 if (other is RigidBody) {
                     var o = (RigidBody)other;
-                    o.Velocity.X = Math.Max(o.Velocity.X, Speed);
+                    if (Speed > 0) {
+                        o.Velocity.X = Math.Max(o.Velocity.X, Speed);
+                    } else {
+                        o.Velocity.X = Math.Min(o.Velocity.X, Speed);
+                    }
                 }
             };
         }

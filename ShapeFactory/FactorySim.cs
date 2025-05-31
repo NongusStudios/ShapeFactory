@@ -97,7 +97,10 @@ namespace ShapeFactory {
             cbSpawnPoint.Items.Clear();
             
             string jsonString = File.ReadAllText(Global.LAYOUT_FOLDER + "/" + name + ".json");
-            var layout = JsonSerializer.Deserialize<Dictionary<string, StaticItemProperties>>(jsonString);
+            var jsonData = JsonSerializer.Deserialize<LayoutEditor.JsonData>(jsonString);
+
+            physics.HasBottomBorder = jsonData.HasBottomBorder;
+            var layout = jsonData.Layout;
 
             foreach(var entry in layout) {
                 var props = entry.Value;

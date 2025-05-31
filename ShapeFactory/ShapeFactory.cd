@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ShapeFactory.Collision" Collapsed="true">
+    <Position X="32.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAQAAACAAAAgAQAAAAAAAAAAAAAAAAAACE=</HashCode>
+      <FileName>Collision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Drawable">
+    <Position X="26.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgABAAAAAAAAAAAAAAAgAAAAIAAAAAA=</HashCode>
+      <FileName>Drawable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Factory" Collapsed="true">
+    <Position X="34" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAgAAAAAAAAABAAAgAAAAAkAAAAAAAAAAAAADAAAA=</HashCode>
+      <FileName>Factory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.FactorySim" Collapsed="true">
+    <Position X="35.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADKAAAAIASAgIjAIAAGAAAACCAASQAAAACQAAIAEgBA=</HashCode>
+      <FileName>FactorySim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Item">
+    <Position X="14.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEIAAAAAABAAAAAAAAAAAAAAAgAAAAIAAAAAA=</HashCode>
+      <FileName>Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.LayoutEditor" Collapsed="true">
+    <Position X="32.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACIFAIAXCCAZRBAAQBCACAACCAAiADAMB0ABCIIEAQY=</HashCode>
+      <FileName>LayoutEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItemProperties">
+    <Position X="24" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAEAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>LayoutEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Line">
+    <Position X="27.25" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAggAAAAAACEAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Line.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Physics" Collapsed="true">
+    <Position X="34" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAQIAAAAAAAACAIAAAAAAAAAIABAAAA=</HashCode>
+      <FileName>Physics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.PhysicsBody">
+    <Position X="21.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAIARAAAAAAQACAAAACA0AAAAIAAAAAA=</HashCode>
+      <FileName>PhysicsBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Program" Collapsed="true">
+    <Position X="35.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.RampBody">
+    <Position X="22.25" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAQAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RampBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Renderer" Collapsed="true">
+    <Position X="37.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgBAAAAAAABAAQAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Renderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.RigidBody">
+    <Position X="20" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAACAEAEQABCAAAACEAIAAAAACEAAE=</HashCode>
+      <FileName>RigidBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Shape">
+    <Position X="25" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAgAAAAAAAAQAAAAAAAAAAQAAAAAAEAA=</HashCode>
+      <FileName>Shape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Sprite">
+    <Position X="25" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAhAAAAgAAAIQAAAAAAACAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Sprite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticBody">
+    <Position X="22.25" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>StaticBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItem">
+    <Position X="18" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEIAAAAAAAAAAAAAAAAAAACAAAAAAAAIAAAAA=</HashCode>
+      <FileName>StaticItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Global" Collapsed="true">
+    <Position X="37.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.UtilMath" Collapsed="true">
+    <Position X="35.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAABAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Util.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Items.AnomalousTriangle">
+    <Position X="12.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Items\AnomalousTriangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Items.LeadBall">
+    <Position X="14.5" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAABAAAAAAAAAAAAIAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Items\LeadBall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Items.PlutoniumCylinder">
+    <Position X="16.75" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\PlutoniumCylinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Properties.Resources" Collapsed="true">
+    <Position X="32.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAgIAAAAAABMAAQQQAAAQAAAgAAAAABDIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.Properties.Settings" Collapsed="true">
+    <Position X="34" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.Belt">
+    <Position X="21.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAQAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StaticItems\Belt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.BeltProperties">
+    <Position X="27.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAEAAAAAAAgAAAAwAABAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>StaticItems\Belt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.Elevator">
+    <Position X="12.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAoQAAJAAAAIAAAEABAAAAAAAACAAgABAAAAA=</HashCode>
+      <FileName>StaticItems\Elevator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.ElevatorProperties">
+    <Position X="18.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAEAAAAAAAgAIAAwAABAAAAAIAAAAAAAAIAAAA=</HashCode>
+      <FileName>StaticItems\Elevator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.Pipe">
+    <Position X="17" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StaticItems\Pipe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.PipeProperties">
+    <Position X="23" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAEAAIAAIAgAAQAwAAAAAAAAIAAAAAAAAAAAAg=</HashCode>
+      <FileName>StaticItems\Pipe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.Punter">
+    <Position X="19.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StaticItems\Punter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.PunterProperties">
+    <Position X="25.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIAAAAAEAAAAAAAgAAAAwAAAAAAAAIAAAAAAAACAAAA=</HashCode>
+      <FileName>StaticItems\Punter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.Ramp">
+    <Position X="23.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>StaticItems\Ramp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.RampProperties">
+    <Position X="29.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAgCAAAAAAAAAAAIAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>StaticItems\Ramp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.Teleporter">
+    <Position X="14.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAIAAgAAAAEAgAAQAAAAAA=</HashCode>
+      <FileName>StaticItems\Teleporter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapeFactory.StaticItems.TeleporterProperties">
+    <Position X="20.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAgAAAAwAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>StaticItems\Teleporter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ShapeFactory.AABB" Collapsed="true">
+    <Position X="32.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Collision.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ShapeFactory.Circle" Collapsed="true">
+    <Position X="34" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collision.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ShapeFactory.Overlap" Collapsed="true">
+    <Position X="35.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAIAAAgAACAAAAAAAA=</HashCode>
+      <FileName>Collision.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ShapeFactory.Transform2D" Collapsed="true">
+    <Position X="37.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgIAgAAAACAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Util.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="ShapeFactory.ShapeType" Collapsed="true">
+    <Position X="32.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAggAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Util.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

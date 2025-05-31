@@ -1,0 +1,170 @@
+{
+  "HasBottomBorder": true,
+  "Layout": {
+    "tA": {
+      "$type": 5,
+      "PosX": 32,
+      "PosY": 32
+    },
+    "tB": {
+      "$type": 5,
+      "PosX": 33,
+      "PosY": 493
+    },
+    "t2A": {
+      "$type": 5,
+      "PosX": 494,
+      "PosY": 32
+    },
+    "t2B": {
+      "$type": 5,
+      "PosX": 494,
+      "PosY": 497
+    },
+    "left": {
+      "$type": 2,
+      "PosX": 13,
+      "PosY": 112,
+      "AddedSpawnVelX": 30,
+      "AddedSpawnVelY": 0,
+      "Rotation": 0
+    },
+    "right": {
+      "$type": 2,
+      "PosX": 513,
+      "PosY": 108,
+      "AddedSpawnVelX": -30,
+      "AddedSpawnVelY": 0,
+      "Rotation": 180
+    },
+    "b1": {
+      "$type": 1,
+      "PosX": 63,
+      "PosY": 168,
+      "Speed": 40
+    },
+    "b2": {
+      "$type": 1,
+      "PosX": 133,
+      "PosY": 205,
+      "Speed": 50
+    },
+    "b3": {
+      "$type": 1,
+      "PosX": 462,
+      "PosY": 168,
+      "Speed": -40
+    },
+    "b4": {
+      "$type": 1,
+      "PosX": 393,
+      "PosY": 203,
+      "Speed": -50
+    },
+    "r1": {
+      "$type": 6,
+      "Points": [
+        {
+          "IsEmpty": false,
+          "X": 256,
+          "Y": 228
+        },
+        {
+          "IsEmpty": false,
+          "X": 312,
+          "Y": 300
+        },
+        {
+          "IsEmpty": false,
+          "X": 200,
+          "Y": 300
+        },
+        {
+          "IsEmpty": false,
+          "X": 256,
+          "Y": 228
+        }
+      ]
+    },
+    "r2": {
+      "$type": 6,
+      "Points": [
+        {
+          "IsEmpty": false,
+          "X": 0,
+          "Y": 348
+        },
+        {
+          "IsEmpty": false,
+          "X": 91,
+          "Y": 420
+        },
+        {
+          "IsEmpty": false,
+          "X": 182,
+          "Y": 447
+        },
+        {
+          "IsEmpty": false,
+          "X": 211,
+          "Y": 447
+        }
+      ]
+    },
+    "r3": {
+      "$type": 6,
+      "Points": [
+        {
+          "IsEmpty": false,
+          "X": 526,
+          "Y": 335
+        },
+        {
+          "IsEmpty": false,
+          "X": 434,
+          "Y": 420
+        },
+        {
+          "IsEmpty": false,
+          "X": 364,
+          "Y": 445
+        },
+        {
+          "IsEmpty": false,
+          "X": 308,
+          "Y": 449
+        }
+      ]
+    },
+    "r4": {
+      "$type": 6,
+      "Points": [
+        {
+          "IsEmpty": false,
+          "X": 176,
+          "Y": 526
+        },
+        {
+          "IsEmpty": false,
+          "X": 234,
+          "Y": 503
+        },
+        {
+          "IsEmpty": false,
+          "X": 250,
+          "Y": 487
+        },
+        {
+          "IsEmpty": false,
+          "X": 262,
+          "Y": 502
+        },
+        {
+          "IsEmpty": false,
+          "X": 319,
+          "Y": 526
+        }
+      ]
+    }
+  }
+}

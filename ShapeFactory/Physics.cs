@@ -8,6 +8,7 @@ namespace ShapeFactory {
     public class Physics {
         public static float GRAVITY = 9.8f;
         public static float TERMINAL_VELOCITY = 330.0f;
+        public bool HasBottomBorder = false;
 
         private List<PhysicsBody> bodies;
         private List<int> queueFree;
@@ -47,11 +48,11 @@ namespace ShapeFactory {
                     if (overlap.Collision) {
                         body.CollisionWith(bodies[j], overlap, deltaTime);
                         // keeps track of what bodies have already collided and don't need to be checked again
-                        collidedBodies.Add((j, i));
+                        if (bodies[j] is RigidBody) collidedBodies.Add((j, i));
                     }
                 }
                 // check with wall collision
-                body.CollideWithBoundaries(deltaTime);
+                body.CollideWithBoundaries(HasBottomBorder, deltaTime);
             }
 
             collidedBodies.Clear();

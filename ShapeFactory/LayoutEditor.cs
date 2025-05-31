@@ -18,6 +18,11 @@ using System.Threading;
 
 namespace ShapeFactory {
     public partial class LayoutEditor : Form {
+        public struct JsonData {
+            public bool HasBottomBorder { get; set; }
+            public Dictionary<string, StaticItemProperties> Layout { get; set; }
+        }
+
         private Renderer r;
         private Physics p;
 
@@ -30,6 +35,7 @@ namespace ShapeFactory {
         private Ramp previewRamp;
 
         private bool draggingItem = false;
+        private bool hasBottomBorder = false;
 
         private Mutex mut = new Mutex();
 
@@ -67,7 +73,7 @@ namespace ShapeFactory {
             r.Draw(g);
         }
 
-        private void spawnItemProperties(string name, string type) {
+        private string spawnItemProperties(string name, string type) {
             if (type == typeof(Belt).ToString()) {
                 layout.Add(name, new StaticItems.BeltProperties(currentMousePosition, 40.0f));
 
@@ -83,10 +89,11 @@ namespace ShapeFactory {
             else if (type == typeof(Teleporter).ToString()) {
                 if (layout.ContainsKey(name + "A") || layout.ContainsKey(name + "B")) {
                     MessageBox.Show("Must input a unique valid name!");
-                    return;
+                    return "";
                 }
                 layout.Add(name + "A", new StaticItems.TeleporterProperties(currentMousePosition, 0));
-                layout.Add(name + "B", new StaticItems.TeleporterProperties(currentMousePosition + new Vector2((float)Properties.Resources.teleporter1.Width / 4.0f, 0.0f), 0));
+                layout.Add(name + "B", new StaticItems.TeleporterProperties(currentMousePosition + new Vector2((float)Properties.Resources.teleporter1.Width / 2.0f, 0.0f), 0));
+                return name + "A";
             }
             else if (type == typeof(Elevator).ToString()) {
                 layout.Add(name, new StaticItems.ElevatorProperties(currentMousePosition, true, 40.0f, 5.0));
@@ -95,6 +102,7 @@ namespace ShapeFactory {
             else if (type == typeof(Ramp).ToString()) {
                 layout.Add(name, new StaticItems.RampProperties(previewRamp.LineInstance.Points.ToArray()));
             }
+            return name;
         }
 
         private void spawnItem(string name) {
@@ -150,7 +158,6 @@ namespace ShapeFactory {
             spawnItemProperties(tbItemName.Text, cbPlace.SelectedItem.ToString());
             spawnItem(tbItemName.Text);
 
-
             previewRamp.LineInstance.Points.Clear();
             tbItemName.Enabled = true;
             btnPlaceRamp.Enabled = false;
@@ -184,8 +191,6 @@ namespace ShapeFactory {
                 return;
             }
 
-            // TODO add drag to move functionality
-            // Check if mouse intersects an item
             if (selectMousedOverItem()) {
                 return;
             }
@@ -203,11 +208,12 @@ namespace ShapeFactory {
                 return;
             }
 
-            spawnItemProperties(tbItemName.Text, cbPlace.SelectedItem.ToString());
-            spawnItem(tbItemName.Text);
+            var name = spawnItemProperties(tbItemName.Text, cbPlace.SelectedItem.ToString());
+            if (name == "") return;
+            spawnItem(name);
 
             updateItemList();
-            listItems.SelectedItem = tbItemName.Text + ": " + layoutPreview[tbItemName.Text].GetType().ToString();
+            listItems.SelectedItem = tbItemName.Text + ": " + layoutPreview[name].GetType().ToString();
             updatePreview();
         }
 
@@ -270,7 +276,11 @@ namespace ShapeFactory {
 
             mut.WaitOne();
 
-            layout = JsonSerializer.Deserialize<Dictionary<string, StaticItemProperties>>(jsonString);
+            var jsonData = JsonSerializer.Deserialize<JsonData>(jsonString);
+            
+            layout = jsonData.Layout;
+            hasBottomBorder = jsonData.HasBottomBorder;
+
             foreach (var entry in layout) {
                 spawnItem(entry.Key);
             }
@@ -280,7 +290,7 @@ namespace ShapeFactory {
 
         private void saveLayout(string name) {
             JsonSerializerOptions settings = new JsonSerializerOptions { WriteIndented = true };
-            var jsonString = JsonSerializer.Serialize(layout, settings);
+            var jsonString = JsonSerializer.Serialize(new JsonData { HasBottomBorder = checkbox_BottomBorder.Checked, Layout=layout }, settings);
             File.WriteAllText(Global.LAYOUT_FOLDER + "/" + name + ".json", jsonString);
         }
 
@@ -306,7 +316,10 @@ namespace ShapeFactory {
             layout.Clear();
             layoutPreview.Clear();
 
-
+            if(cbLoad.SelectedItem == null) {
+                MessageBox.Show("No layout selected!");
+                return;
+            }
             var layoutName = cbLoad.SelectedItem.ToString();
             tbLayoutName.Text = layoutName;
             var load = new Thread(new ThreadStart(() => {
@@ -316,6 +329,7 @@ namespace ShapeFactory {
             // same story here
             load.Start();
             load.Join();
+            checkbox_BottomBorder.Checked = hasBottomBorder;
             updateItemList();
             updatePreview();
         }

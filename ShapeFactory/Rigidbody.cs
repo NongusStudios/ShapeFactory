@@ -117,7 +117,7 @@ namespace ShapeFactory {
             }
         }
 
-        public override void CollideWithBoundaries(double deltaTime) {
+        public override void CollideWithBoundaries(bool hasBottomBorder, double deltaTime) {
             var aabb = Transform.ToAABB();
             var overlap = new Overlap();
 
@@ -135,11 +135,11 @@ namespace ShapeFactory {
                 overlap.Collision = true;
                 overlap.Normal.Y = 1.0f;
                 overlap.Depth += 0.0f - aabb.Min.Y;
-            } /*else if (aabb.Max.Y >= Global.CanvasSizeY) {
+            } else if (hasBottomBorder && aabb.Max.Y >= Global.CanvasSizeY) {
                 overlap.Collision = true;
                 overlap.Normal.Y = -1.0f;
                 overlap.Depth += aabb.Max.Y - Global.CanvasSizeY;
-            }*/
+            }
 
             if (overlap.Collision) {
                 CollisionWith(null, overlap, deltaTime);

@@ -55,7 +55,7 @@ namespace ShapeFactory {
         }
 
         public virtual void CollisionWith(PhysicsBody other, Overlap overlap, double deltaTime) { }
-        public virtual void CollideWithBoundaries(double deltaTime) { }
+        public virtual void CollideWithBoundaries(bool hasBottomBoundaries, double deltaTime) { }
 
         public bool IsQueuedFree() {
             return queueFree;
