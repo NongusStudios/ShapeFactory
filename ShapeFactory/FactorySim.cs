@@ -30,6 +30,7 @@ namespace ShapeFactory {
 
         public FactorySim() {
             InitializeComponent();
+            Text = "ShapeFactory";
 
             random = new Random();
 
